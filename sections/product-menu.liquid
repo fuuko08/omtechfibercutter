@@ -1,0 +1,325 @@
+<style>  
+  li.product-list a.active {
+     border-bottom: 2px solid #313c87;
+}
+li.product-list a:hover {
+ border-bottom: 2px solid #313c87;
+}
+    a {
+    padding: 10px 10px;
+  }
+  nav.site-nav-second {
+    display: flex;
+    margin: 0;
+    justify-content: space-between;
+    padding: 0 50px; 
+    width: 100%;  
+    height: 45px;
+/*     text-align: center; */
+  }
+  
+   nav.site-nav-second + .content {
+    padding-top: 60px;
+  }
+ ul.product-menu {
+    display: flex;
+    list-style: none;
+   padding: 10px 0px 0px 0px;;
+   width: 100%;
+   align-items: center;
+}
+  a.logo {
+    font-weight: 700;
+    text-align: center;
+}
+  li.product-list {
+    padding: 0px 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 9px;
+}
+.index-section.stickymenu {
+    margin: 0px 0;
+background: #f6f3f3;
+  height: 45px;
+  width: 100%;
+  position: sticky;
+  z-index: 9;    
+}
+/* ss makes changes */
+@media screen and (min-width: 1030px){
+  .fixedtop {
+     position: fixed !important;
+  top: 104.38px;
+  }
+}
+
+@media screen and (max-width: 1029px ) and (min-width: 769px ) {
+  .fixedtop {
+     position: fixed !important;
+  top: 99.78px;
+  }
+}
+@media screen and (max-width: 768px ) {
+  .fixedtop {
+     position: fixed !important;
+  top: 89.78px;
+  }
+}
+  
+  @media only screen and (max-width: 1130px){
+    a.logo {
+    font-weight: 700;
+    display: none;
+  }
+    li.product-list a.active {
+     border-bottom: 2px solid #313c87;
+}
+li.product-list a:hover {
+ border-bottom: 2px solid #313c87;
+}
+    a {
+    padding: 10px 10px;
+  }
+    nav.site-nav-second {
+    display: flex;    
+    justify-content: space-around;
+    position: sticky;
+    top: 0;
+    z-index: 9;
+  }
+    ul.product-menu {
+      width: 100%;
+    }    
+    li.product-list {
+    display: inherit;
+    height: 45px;
+    width: 33.33%
+  }
+}
+
+@media only screen and (max-width: 856px) and (min-width: 651px){
+  
+  li.product-list:hover {
+    background-color: #313c87;
+  }
+   li.product-list:hover a {
+    color: white;
+     border-bottom: none;
+   }
+  nav.site-nav-second {
+    padding: 0;
+  }
+  ul.product-menu {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  li.product-list {
+    font-size: 90%;
+    padding: 0;
+  }
+  li#first-child.product-list, li#third-child.product-list {
+    display: inherit;
+    height: 45px;
+    width: 30%;
+  }
+  li#second-child.product-list {
+    display: inherit;
+    height: 45px;
+    width: 40%;
+  }
+  nav.site-nav-second {
+    padding: 0;
+  }
+  li.product-list:hover {
+    background-color: #313c87;
+  }
+   li.product-list:hover a {
+    color: white;
+     border-bottom: none;
+   }
+  ul.product-menu {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+</style>
+{% assign settings = section.settings %}
+
+{% if settings.space_around %}
+  <div class="index-section stickymenu" id="fixedmenu">
+{% endif %}
+<div>
+<nav class="site-nav-second" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+  {% if settings.show_logo %}
+        <a class="logo" href="{{ settings.brand_url }}">{{ settings.brand_label }}</a>
+
+  {% endif %}
+
+  <ul class="product-menu" style="text-align: {{ settings.alignment }};">
+    {% if settings.show_labels %}
+      <li class="product-list" id="first-child">
+<!--         <a href="{{ settings.home_url }}">{{ settings.home_label }}</a> -->
+        <a href="#section-highlight">{{ settings.home_label }}</a>
+      </li>
+      {% if settings.divider %}
+        <li class="product-list"|</li>
+      {% endif %}
+      <li class="product-list" id="second-child">
+<!--         <a href="{{ settings.about_url }}">{{ settings.about_label }}</a> -->
+       <a href="#section-specs">{{ settings.about_label }}</a> 
+      </li>
+      {% if settings.divider %}
+        <li class="product-list">|</li>
+      {% endif %}
+      <li class="product-list" id="third-child">
+        <a href="{{ settings.contact_url }}">{{ settings.contact_label }}</a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>
+</div>
+{% if settings.space_around %}
+  </div>
+{% endif %}
+
+<!-- ss makes changes -->
+{% render 'oc-quote-popup', section: section %}
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script>
+  $(window).scroll(function() {
+    var verticalPosition = $(this).scrollTop();
+    var element = $('#fixedmenu');  
+    if (verticalPosition > 300) {
+      element.addClass("fixedtop"); 
+    }   
+    if (verticalPosition <= 300) {
+      element.removeClass("fixedtop")
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Navigation Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_url",
+      "label": "Logo URL",
+      "default": "/assets/logo.png"
+    },
+    {
+      "type": "text",
+      "id": "brand_url",
+      "label": "brand URL",
+      "default": "/"
+    },
+    {
+      "type": "text",
+      "id": "home_url",
+      "label": "Home URL",
+      "default": "/"
+    },
+    {
+      "type": "text",
+      "id": "about_url",
+      "label": "About URL",
+      "default": "/pages/about-us"
+    },
+    {
+      "type": "text",
+      "id": "contact_url",
+      "label": "Contact URL",
+      "default": "/pages/contact-us"
+    },
+    {
+      "type": "text",
+      "id": "brand_label",
+      "label": "brand Label",
+      "default": "Brand"
+    },
+    {
+      "type": "text",
+      "id": "home_label",
+      "label": "Home Label",
+      "default": "Home"
+    },
+    {
+      "type": "text",
+      "id": "about_label",
+      "label": "About Label",
+      "default": "About"
+    },
+    {
+      "type": "text",
+      "id": "contact_label",
+      "label": "Contact Label",
+      "default": "Contact"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_logo",
+      "label": "Show Logo",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_labels",
+      "label": "Show Labels",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "space_around",
+      "label": "Add space around the navigation bar",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "divider",
+      "label": "Add divider between links",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default",
+      "category": "Navigation",
+      "settings": {
+        "logo_url": "/assets/logo.png",
+        "home_url": "/",
+        "about_url": "/pages/about-us",
+        "contact_url": "/pages/contact-us",
+        "brand_label": "Brand",
+        "home_label": "Home",
+        "about_label": "About",
+        "contact_label": "Contact",
+        "show_logo": true,
+        "show_labels": true,
+        "space_around": true,
+        "divider": false,
+        "alignment": "left"
+      }
+    }
+  ]
+}
+{% endschema %}
+
+   

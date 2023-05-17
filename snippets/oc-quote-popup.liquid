@@ -1,0 +1,439 @@
+<style>
+  #oc-cutting-quote-popup{
+    width: 1042px;
+/*     min-height: 781px; */
+    min-height: auto;
+    background: #FFFFFF;
+    position: fixed;
+/*     top: 167px; */
+    top: 124px;
+    left: calc(50vw - 520px);
+    display: none;
+    font-family: Avenir-Roman;
+    z-index:10;
+    border: 1px solid #CFCFCF;
+  }
+  #oc-cutting-quote-popup .oc-cutting-quote-popup {
+    width: 100%;
+    padding: 30px 50px;
+  }
+  #oc-cutting-quote-popup .popup-title{
+    max-width: 533px;
+    color: #171818;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 28px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: DIN;
+  }
+  #oc-cutting-quote-popup .popup-sub-title{
+    max-width: 533px;
+    color: #171818;
+    font-size: 12px;
+    line-height: 1;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  #oc-cutting-quote-popup .form-content{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #oc-cutting-quote-popup .form-content-item{
+    width: 300px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  #oc-cutting-quote-popup .form-content-item.form-content-item-select{
+    position: relative;
+  }
+  #oc-cutting-quote-popup .form-content-item.form-content-item-select select{
+    appearance:none;
+    background: url('https://cdn.shopifycdn.net/s/files/1/0676/0077/7536/files/chevron-right-normal.png?v=1670837096') #FFFFFF no-repeat;
+    background-position: 95% 50%;
+    color: rgba(95,99,101,40%);
+    pointer-events:none;
+  }
+  #oc-cutting-quote-popup .form-content-item-select select:focus{
+    border:1px solid #118DDA;
+    outline: none;
+  }
+  #oc-cutting-quote-popup .form-content-item-textarea{
+    width: 940px;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+  #oc-cutting-quote-popup .form-content-item.form-content-item-textarea textarea{
+    padding-top: 16px;
+    font-family: Avenir-Roman;
+    height: 87px;
+  }
+  #oc-cutting-quote-popup .form-content-item:nth-child(3n){
+    margin-right: 0;
+  }
+  #oc-cutting-quote-popup .form-content-item .form-content-item-title{
+    color: #171818;
+    font-size: 14px;
+    margin-bottom: 14px;
+    line-height:1;
+  }
+  #oc-cutting-quote-popup .form-content-item .form-content-item-input{
+    width: 100%;
+    height: 48px;
+    background: #FFFFFF;
+    padding-left: 20px;
+    border: 1px solid #5F636566;
+    font-size:16px;
+    font-family: Avenir-Roman;
+  }
+  #oc-cutting-quote-popup .form-content-item input::placeholder,#oc-cutting-quote-popup .form-content-item textarea::placeholder,#oc-cutting-quote-popup .form-content-item select::placeholder{
+    color: rgba(95,99,101,40%)!important;
+    font-family: Avenir-Roman;
+    font-size: 14px;
+    font-weight:400!important;
+  }
+  #oc-cutting-quote-popup .form-content-item input:focus{
+    border:1px solid #118DDA!important;
+    outline: none;
+  }
+  #oc-cutting-quote-popup .form-content-item textarea:focus{
+    border:1px solid #118DDA!important;
+    outline: none;
+  }
+  #oc-cutting-quote-popup .send{
+    display: flex;
+    justify-content: center;
+  }
+  #oc-cutting-quote-popup .send input{
+    border-radius: 4px;
+    background: #171818;
+    width: 332px;
+    height: 60px;
+    color: #FFFFFF;
+    font-size: 20px;
+    text-align: center;
+    margin: 0 auto;
+    cursor: pointer;
+    border: none;
+  }
+  #oc-cutting-quote-popup .send input:hover{
+    background: #383A3C;
+  }
+  #oc-cutting-quote-popup .quote-popup-close{
+    cursor: pointer;
+    position: absolute;
+    top: 30px;
+    right: 24px;
+  }
+  /* 机型选择 */
+  #oc-cutting-quote-popup #product-img-text-box-popup{
+    width: 100%;
+    background: #FFFFFF;
+    padding: 0 17px 0 20px;
+    display: none;
+    position: absolute;
+    border:1px solid #118DDA;
+    border-top:none;
+  }
+  #oc-cutting-quote-popup .product-img-text-item{
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(95,99,101,10%);
+  }
+  #oc-cutting-quote-popup .product-img-text-item:last-of-type{
+    border-bottom: none;
+  }
+  #oc-cutting-quote-popup .product-img-text-item>div{
+    display: flex;
+    align-items: center;
+  }
+  #oc-cutting-quote-popup .product-img-text-item>div>div{
+    color: #5F6365;
+    font-size: 14px;
+    margin-left: 15px;
+  }
+  #oc-cutting-quote-popup .product-img-text-item>div>input{
+    cursor: pointer;
+    position: relative;
+    width: 14px;
+    height: 14px;
+    font-size: 12px;
+  }
+  #oc-cutting-quote-popup .product-img-text-item>div>input::after{
+    position: absolute;
+    top: 0;
+    color: #000;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    visibility: visible;
+    padding-left: 0px;
+    text-align: center;
+    content: ' ';
+    border-radius: 3px
+  }
+  #oc-cutting-quote-popup .product-img-text-item>div>input:checked::after{
+    content: "✓";
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #118DDA;
+  }
+  #oc-cutting-quote-popup .product-img-text-item>img{
+    width: 37px;
+    height: 28px;
+  }
+  /* Pad及以下 */
+  @media screen and (max-width: 1220px){
+    #oc-cutting-quote-popup{
+      width: 75%;
+      height: 82%;
+      overflow-y: auto;
+      left: 12.5%;
+      top: 12%;
+    }
+    #oc-cutting-quote-popup .oc-cutting-quote {
+      width: 100%;
+      padding: 100px 25px 50px 25px;
+    }
+    #oc-cutting-quote-popup .oc-cutting-quote-title{
+      color: #171818;
+      font-size: 22px;
+      line-height: 33px;
+      padding: 0 47px;
+      margin-bottom: 30px;
+    }
+    #oc-cutting-quote-popup .form-content-item{
+      width: 100%;
+      margin-right: 0;
+    }
+    #oc-cutting-quote-popup .form-content-item .form-content-item-title{
+      font-size: 16px;
+    }
+  }
+</style>
+<div id="oc-cutting-quote-popup">
+  <img class="quote-popup-close" src="https://cdn.shopifycdn.net/s/files/1/0676/0077/7536/files/closed.png?v=1670836603" alt="" onclick="hideQuotePopUp()">
+  <div class="oc-cutting-quote-popup">
+    <div class="popup-title">Request Your Custom Quote From Our FC Expert Today!</div>
+<!--     <div class="popup-title">{{ section.settings.quote_popup_title }}</div> -->
+    <div class="popup-sub-title">Note: This form is for metal fabrication laser cutting machine inquiries ONLY</div>
+<!--     <div class="popup-sub-title">{{ section.settings.quote_description }}</div> -->
+    <form action='https://crm.zoho.com/crm/WebToLeadForm' name=WebToLeads548198000000186000102 method='POST'
+    onSubmit='javascript:document.charset="UTF-8"; return checkMandatory548198000000186000102()' accept-charset='UTF-8'>
+    <input type='text' style='display:none;' name='xnQsjsdp'
+      value='f8e1dbd6fd41e5642f8c3ca82a6940efe64f27257e3e00307698734e1c4960a6'></input>
+    <input type='hidden' name='zc_gad' id='zc_gad' value=''></input>
+    <input type='text' style='display:none;' name='xmIwtLD'
+      value='27e7e22958764a5870b165bde588e481d3c8aeb2a50f5d9e8d9ab09666928f4a'></input>
+    <input type='text' style='display:none;' name='actionType' value='TGVhZHM='></input>
+    <input type='text' style='display:none;' name='returnURL'
+      value='https&#x3a;&#x2f;&#x2f;omtechlaser.com&#x2f;pages&#x2f;contact-us-for-fiber-cutting-machine'> </input>
+      <div class="form-content">
+        <div class="form-content-item">
+          <div class="form-content-item-title">First Name *</div>
+          <input class="form-content-item-input" type="text" id="First Name" name="First Name" placeholder="First Name">
+        </div>
+        <div class="form-content-item">
+          <div class="form-content-item-title">Last Name *</div>
+          <input class="form-content-item-input" type="text" id="Last Name" name="Last Name" placeholder="Last Name">
+        </div>
+        <div class="form-content-item">
+          <div class="form-content-item-title">Email *</div>
+          <input class="form-content-item-input" type="text" id="Email" name="Email" placeholder="Email">
+        </div>
+        <div class="form-content-item">
+          <div class="form-content-item-title">Phone Number *</div>
+          <input class="form-content-item-input" type="text" id="Phone" name="Phone" placeholder="Phone Number">
+        </div>
+        <div class="form-content-item">
+          <div class="form-content-item-title">Postal Code</div>
+          <input class="form-content-item-input" type="text" id="Zip Code" name="Zip Code"
+            placeholder="Postal Code">
+        </div>
+        <div class="form-content-item">
+          <div class="form-content-item-title">Company Name</div>
+          <input class="form-content-item-input" type="text" id="Company" name="Company" placeholder="Company Name">
+        </div>
+        <div class="form-content-item">
+          <div class="form-content-item-title">Website</div>
+          <input class="form-content-item-input" type="text" id="Website" name="Website" placeholder="Website">
+        </div>
+        <div class="form-content-item form-content-item-select">
+          <div class="form-content-item-title">Interested Model</div>
+          <select class="form-content-item-input" id="LEADCF1" name="LEADCF1" placeholder="Select Model">
+            <option style='display:none' value="-None-">Select Model</option>
+          </select>
+          <!-- 根据可视化编辑内容渲染图片+文字 -->
+          <div id="product-img-text-box-popup">
+            {% for block in section.blocks %}
+              {% if block.type == 'quote_product'  %}
+                <div class="product-img-text-item">
+                  <div>
+                    <input type="checkbox" value="{{ block.settings.product_name }}" onchange="productOptionChangePopup()" />
+                    <div>{{ block.settings.product_name }}</div>
+                  </div>
+                  <img src="{{ block.settings.product_image | img_url:'1690x' }}" data-aspectratio="{{ block.settings.product_image.aspect_ratio }}" data-sizes="auto" alt="">
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="form-content-item">
+          <div class="form-content-item-title">What is the best time to contact you?</div>
+          <input class="form-content-item-input" type="text" id="Industry" name="Industry"
+            placeholder="What is the best time to contact you?">
+        </div>
+        <div class="form-content-item form-content-item-textarea">
+          <div class="form-content-item-title">Your Message *</div>
+          {% comment %} 在雕刻机上显示解释文字 stast {% endcomment %}
+<!--           <div class="quote-description">{{ section.settings.quote_description }}</div> -->
+          {% comment %} 在雕刻机上显示解释文字 end {% endcomment %}
+          <textarea class="form-content-item-input" type="text" id="Description" name="Description" placeholder="We'd love to hear about your business and/or your metal fabrication needs so we can customize your quote that suits you the best."></textarea>
+        </div>
+      </div>
+      <div class="send">
+        <input type='submit' id='formsubmit' value='Submit' title='Submit'>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+  
+  function validateEmail5481980000001860001() {
+    var form = document.forms['WebToLeads5481980000001860001'];
+    var emailFld = form.querySelectorAll('[ftype=email]');
+    var i;
+    for (i = 0; i < emailFld.length; i++) {
+      var emailVal = emailFld[i].value;
+      if ((emailVal.replace(/^\s+|\s+$/g, '')).length != 0) {
+        var atpos = emailVal.indexOf('@');
+        var dotpos = emailVal.lastIndexOf('.');
+        if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= emailVal.length) {
+          alert('Please enter a valid email address. ');
+          emailFld[i].focus();
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  function checkMandatory548198000000186000102() {
+    var mndFileds = new Array('First Name', 'Last Name', 'Email', 'Phone', 'Description');
+    var fldLangVal = new Array('First\x20Name', 'Last\x20Name', 'Email', 'Phone\x20\x20Number', 'Message');
+    for (i = 0; i < mndFileds.length; i++) {
+      var fieldObj = document.forms['WebToLeads548198000000186000102'][mndFileds[i]];
+      if (fieldObj) {
+        if (((fieldObj.value).replace(/^\s+|\s+$/g, '')).length == 0) {
+          if (fieldObj.type == 'file') {
+            alert('Please select a file to upload.');
+            fieldObj.focus();
+            return false;
+          }
+          alert(fldLangVal[i] + ' cannot be empty.');
+          fieldObj.focus();
+          return false;
+        } else if (fieldObj.nodeName == 'SELECT') {
+          if (fieldObj.options[fieldObj.selectedIndex].value == '-None-') {
+            alert(fldLangVal[i] + ' cannot be none.');
+            fieldObj.focus();
+            return false;
+          }
+        } else if (fieldObj.type == 'checkbox') {
+          if (fieldObj.checked == false) {
+            alert('Please accept  ' + fldLangVal[i]);
+            fieldObj.focus();
+            return false;
+          }
+        }
+        try {
+          if (fieldObj.name == 'Last Name') {
+            name = fieldObj.value;
+          }
+        } catch (e) { }
+      }
+    }
+    if (!validateEmail5481980000001860001()) { return false; }
+    document.querySelector('.crmWebToEntityForm .formsubmit').setAttribute('disabled', true);
+  }
+
+  function tooltipShow5481980000001860001(el) {
+    var tooltip = el.nextElementSibling;
+    var tooltipDisplay = tooltip.style.display;
+    if (tooltipDisplay == 'none') {
+      var allTooltip = document.getElementsByClassName('zcwf_tooltip_over');
+      for (i = 0; i < allTooltip.length; i++) {
+        allTooltip[i].style.display = 'none';
+      }
+      tooltip.style.display = 'block';
+    } else {
+      tooltip.style.display = 'none';
+    }
+  }
+  function showQuotePopUp() {
+  var scrollThreshold = (30 / 100) * $(document).height();
+
+  // Show popup after a timeout
+  setTimeout(function() {
+    $('#oc-cutting-quote-popup').css('display', 'block');
+  }, 40000); // Delay execution by 40000 milliseconds (40 seconds)
+
+  // Show popup when scrolled 30% of the page
+  $(window).scroll(function() {
+    if ($(window).scrollTop() > scrollThreshold) {
+      $(window).off('scroll'); // Remove the scroll event listener
+      $('#oc-cutting-quote-popup').css('display', 'block');
+    }
+  });
+}
+
+  function hideQuotePopUp() {
+    $('#oc-cutting-quote-popup').css('display','none')
+  }
+  // 自定义产品下拉列表事件
+  var formSelectBoxPopup = $('#oc-cutting-quote-popup').find('.form-content-item-select')
+  var formSelectPopup = $(formSelectBoxPopup).find('select')
+  var productImgTextBoxPopup = $('#product-img-text-box-popup')
+  $(formSelectBoxPopup[0]).bind('click', function(){
+    console.log(productImgTextBoxPopup)
+    $(productImgTextBoxPopup).css('display','block')
+    $(formSelectPopup).css('border','1px solid #118DDA')
+  })
+  $(formSelectBoxPopup[0]).bind('mouseleave', function(){
+    $(productImgTextBoxPopup).css('display','none')
+    $(formSelectPopup).css('border','1px solid #5F636566')
+  })
+  $(formSelectBoxPopup[0]).bind('blur', function(){
+    $(productImgTextBoxPopup).css('display','none')
+    $(formSelectPopup).css('border','1px solid #5F636566')
+  })
+  // 选择事件:如果有被选中的产品，给第一个option标签赋值为产品名称合集，如果没有，第一个option标签的值为Product
+  function productOptionChangePopup(){
+    let checkedListPopup = []
+    let checkedStringPopup = ''
+    var productOptionPopup = $(productImgTextBoxPopup).find('input')
+    for(let i=0; i<productOptionPopup.length; i++){
+      if($(productOptionPopup[i]).is(':checked')){
+        checkedListPopup.push($(productOptionPopup[i]).val())
+      }
+    }
+    if(checkedListPopup.length>0){
+      checkedStringPopup = checkedListPopup.join('、')
+      $(formSelectPopup[0]).css('color','#171818')
+      $(formSelectPopup[0]).find('option').val(checkedStringPopup).text(checkedStringPopup)
+    } else {
+      $(formSelectPopup[0]).css('color','rgba(95,99,101,40%)')
+      $(formSelectPopup[0]).find('option').val('Select Model').text('Select Model')
+    }
+  }
+</script>
+<!-- Do not remove this --- Analytics Tracking code starts -->
+<!-- <script id='wf_anal'
+  src='https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=27e7e22958764a5870b165bde588e481d3c8aeb2a50f5d9e8d9ab09666928f4agidf8e1dbd6fd41e5642f8c3ca82a6940efe64f27257e3e00307698734e1c4960a6gid885e3c1045bd9bdcc91bdf30f82b5696gid14f4ec16431e0686150daa43f3210513&tw=61690b96c1d0471b638f31426f38e68aa67fb7ed6da86f32dc10ad817fe55a0a'></script>
+<!-- Do not remove this --- Analytics Tracking code ends. --> 

@@ -1,0 +1,94 @@
+<div id="oc-cutting-quote-popup">
+  <img class="quote-popup-close" src="https://cdn.shopifycdn.net/s/files/1/0676/0077/7536/files/closed.png?v=1670836603" alt="" onclick="hideQuotePopUp()">
+  <div class="oc-cutting-quote-popup">
+    <div class="popup-title">Request Your Custom Quote From Our FC Expert Today!</div>
+<!--     <div class="popup-title">{{ section.settings.quote_popup_title }}</div> -->
+    <div class="popup-sub-title">Note: This form is for metal fabrication laser cutting machine inquiries ONLY</div>
+<!--     <div class="popup-sub-title">{{ section.settings.quote_description }}</div> -->
+    <form action='https://crm.zoho.com/crm/WebToLeadForm' name=WebToLeads548198000000186000102 method='POST'
+    onSubmit='javascript:document.charset="UTF-8"; return checkMandatory548198000000186000102()' accept-charset='UTF-8'>
+    <input type='text' style='display:none;' name='xnQsjsdp'
+      value='f8e1dbd6fd41e5642f8c3ca82a6940efe64f27257e3e00307698734e1c4960a6'></input>
+    <input type='hidden' name='zc_gad' id='zc_gad' value=''></input>
+    <input type='text' style='display:none;' name='xmIwtLD'
+      value='27e7e22958764a5870b165bde588e481d3c8aeb2a50f5d9e8d9ab09666928f4a'></input>
+    <input type='text' style='display:none;' name='actionType' value='TGVhZHM='></input>
+    <input type='text' style='display:none;' name='returnURL'
+      value='https&#x3a;&#x2f;&#x2f;omtechlaser.com&#x2f;pages&#x2f;contact-us-for-fiber-cutting-machine'> </input>
+      <div class="form-content">
+        <div class="form-content-item">
+          <div class="form-content-item-title">First Name *</div>
+          <input class="form-content-item-input" type="text" id="First Name" name="First Name" placeholder="First Name">
+        </div>
+        <div class="form-content-item">
+          <div class="form-content-item-title">Last Name *</div>
+          <input class="form-content-item-input" type="text" id="Last Name" name="Last Name" placeholder="Last Name">
+        </div>
+        <div class="form-content-item">
+          <div class="form-content-item-title">Email *</div>
+          <input class="form-content-item-input" type="text" id="Email" name="Email" placeholder="Email">
+        </div>
+        <div class="form-content-item">
+          <div class="form-content-item-title">Phone Number *</div>
+          <input class="form-content-item-input" type="text" id="Phone" name="Phone" placeholder="Phone Number">
+        </div>
+        <div class="form-content-item">
+          <div class="form-content-item-title">Postal Code</div>
+          <input class="form-content-item-input" type="text" id="Zip Code" name="Zip Code"
+            placeholder="Postal Code">
+        </div>
+        <div class="form-content-item">
+          <div class="form-content-item-title">Company Name</div>
+          <input class="form-content-item-input" type="text" id="Company" name="Company" placeholder="Company Name">
+        </div>
+        <div class="form-content-item">
+          <div class="form-content-item-title">Website</div>
+          <input class="form-content-item-input" type="text" id="Website" name="Website" placeholder="Website">
+        </div>
+        <div class="form-content-item form-content-item-select">
+          <div class="form-content-item-title">Interested Model</div>
+          <select class="form-content-item-input" id="LEADCF1" name="LEADCF1" placeholder="Select Model">
+            <option style='display:none' value="-None-">Select Model</option>
+          </select>
+          <!-- 根据可视化编辑内容渲染图片+文字 -->
+          <div id="product-img-text-box-popup">
+            {% for block in section.blocks %}
+              {% if block.type == 'quote_product'  %}
+                <div class="product-img-text-item">
+                  <div>
+                    <input type="checkbox" value="{{ block.settings.product_name }}" onchange="productOptionChangePopup()" />
+                    <div>{{ block.settings.product_name }}</div>
+                  </div>
+                  <img src="{{ block.settings.product_image | img_url:'1690x' }}" data-aspectratio="{{ block.settings.product_image.aspect_ratio }}" data-sizes="auto" alt="">
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="form-content-item">
+          <div class="form-content-item-title">What is the best time to contact you?</div>
+          <input class="form-content-item-input" type="text" id="Industry" name="Industry"
+            placeholder="What is the best time to contact you?">
+        </div>
+        <div class="form-content-item form-content-item-textarea">
+          <div class="form-content-item-title">Your Message *</div>
+          {% comment %} 在雕刻机上显示解释文字 stast {% endcomment %}
+<!--           <div class="quote-description">{{ section.settings.quote_description }}</div> -->
+          {% comment %} 在雕刻机上显示解释文字 end {% endcomment %}
+          <textarea class="form-content-item-input" type="text" id="Description" name="Description" placeholder="We'd love to hear about your business and/or your metal fabrication needs so we can customize your quote that suits you the best."></textarea>
+        </div>
+      </div>
+      <div class="send">
+        <input type='submit' id='formsubmit' value='Submit' title='Submit'>
+      </div>
+    </form>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "form",
+    "settings": []
+  }
+{% endschema %}
+
+

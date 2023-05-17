@@ -1,0 +1,285 @@
+<style>
+  .index-section.color-scheme-none.text-left {
+    padding: 22px 0px;
+}
+  ul {
+    list-style: none;
+}
+  .bullet-points {
+    background: #f3f3f3;
+}
+.enlarge-text li:before {
+    content: "\25A0";
+    color: #6e62f2;
+    padding-right: 10px;
+    margin-left: 0px;
+}
+   .rte li {
+    margin-bottom: 0;
+    float: left;
+    width: 50%;
+    padding:0px 10px 0px 0px;
+}
+
+    .enlarge-text li:before {
+    content: "\25A0";
+    color: #6e62f2;
+    padding-right: 10px;
+    margin-left:-18px!important;
+  
+}
+   a.btn {
+    text-align: center;
+    margin: 0px auto;
+   
+ }
+  h2.h2 {
+    text-align: center;
+}
+  @media only screen and (min-width:768px){
+   .rte li {
+    margin-top: 5px;
+    float: left;
+    width: 100%!important;
+    padding: 0px 10px 0px 40px !important;
+     font-size: 18px;
+}}  
+   @media only screen and (max-width:767px){
+   .rte li {
+   margin-top: 5px;
+    float: left;
+    width: 100%!important;
+    padding: 0px 10px 0px 20px !important;
+     font-size: 14px;
+}}
+    
+  @media only screen and (min-width: 992px){
+   .rte li {
+    margin-top: 5px;
+    float: left;
+    width: 100%!important;
+    padding: 0px 10px 0px 55px!important;
+     font-size: 18px;
+   }
+}
+  @media only screen and (min-width: 1200px){
+   .rte li {
+   margin-top: 5px;
+    float: left;
+    width: 50%!important;
+    padding: 0px 10px 0px 60px!important;
+     font-size: 18px;
+   }
+}
+  @media only screen and (min-width: 1600px){
+    .rte li {
+    padding: 0px 10px 0px 12px!important;
+   }
+  }
+</style>
+{%- if section.settings.divider -%}<div class="section--divider">{%- endif -%}
+<div class="bullet-points">
+<div class="index-section color-scheme-{{ section.settings.color_scheme }} text-{{ section.settings.align_text }}">
+  {%- if section.settings.color_scheme != 'none' -%}
+    {%- render 'color-scheme-texture', color_scheme: section.settings.color_scheme -%}
+  {%- endif -%}
+  <div class="page-width{% if section.settings.narrow_column %} page-width--narrow{% endif %}">
+    {%- for block in section.blocks -%}
+      <div class="theme-block-bullet" {{ block.shopify_attributes }}>
+        {%- case block.type -%}
+          {%- when 'heading' -%}
+            <h2 class="{{ block.settings.heading_size }}">{{ block.settings.title | escape }}</h2>
+          {%- when 'page' -%}
+            <div class="rte">
+              {%- if block.settings.page_text != blank -%}
+                {{ pages[block.settings.page_text].content }}
+              {%- else -%}
+                {{ 'home_page.onboarding.no_content' | t }}
+              {%- endif -%}
+            </div>
+          {%- when 'text' -%}
+            <div class="rte">
+              {%- if block.settings.text != blank -%}
+                {%- if block.settings.enlarge_text %}<div class="enlarge-text">{% endif -%}
+                {{ block.settings.text }}
+                {%- if block.settings.enlarge_text %}</div>{% endif -%}
+              {%- else -%}
+                {{ 'home_page.onboarding.no_content' | t }}
+              {%- endif -%}
+            </div>
+          {%- when 'button' -%}
+            <div class="rte">
+              <a href="{{ block.settings.link }}" class="btn">
+                {{ block.settings.link_text }}
+              </a>
+            </div>
+        {%- endcase -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+</div>
+{%- if section.settings.divider -%}</div>{%- endif -%}
+{% schema %}
+{
+  "name": "bullet-points-text",
+  "settings": [
+    {
+      "type": "select",
+      "id": "align_text",
+      "label": "t:sections.rich-text.settings.align_text.label",
+      "default": "center",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.rich-text.settings.align_text.options.left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.rich-text.settings.align_text.options.center.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.rich-text.settings.align_text.options.right.label"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "narrow_column",
+      "label": "t:sections.rich-text.settings.narrow_column.label",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:sections.rich-text.settings.color_scheme.label",
+      "default": "1",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.rich-text.settings.color_scheme.options.none.label"
+        },
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        },
+        {
+          "value": "3",
+          "label": "3"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "divider",
+      "label": "t:sections.rich-text.settings.divider.label",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "t:sections.rich-text.blocks.heading.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.rich-text.blocks.heading.settings.title.label",
+          "default": "Rich text"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "t:common.heading_size.label",
+          "default": "h2",
+          "options": [
+            {
+              "value": "h3",
+              "label": "t:common.heading_size.options.small.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:common.heading_size.options.medium.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:common.heading_size.options.large.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:common.heading_size.options.extra_large.label"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.rich-text.blocks.text.name",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "enlarge_text",
+          "label": "enlarge_text label",
+          "default": true
+        },
+        {
+          "id": "text",
+          "type": "richtext",
+          "label": "text label",
+          "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "button name",
+      "settings": [
+        {
+          "type": "url",
+          "id": "link",
+          "label": "button link label"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "link_text label",
+          "default": "Button"
+        }
+      ]
+    },
+    {
+      "type": "page",
+      "name": "t:sections.rich-text.blocks.page.name",
+      "settings": [
+        {
+          "id": "page_text",
+          "type": "page",
+          "label": "t:sections.rich-text.blocks.page.settings.page_text.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "bullet-points",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["custom.popups"]
+  }
+}
+{% endschema %}

@@ -1,0 +1,635 @@
+<style>
+  .omt-inquiry {
+/*     position: fixed;
+    bottom: 0; */
+    width: 100%;
+}
+  .call {
+    background: #3866e2;
+    width: 50px;
+    height: 50px;
+    margin: 0 30px 60px 30px;
+}
+  .display-none {
+    display:none;
+  }
+    #omt-inquiry-box .product-consulting .title-product-consulting b {
+        font-size: 26px;
+        font-weight: normal;
+        line-height: 1;
+        display: block;
+        color: #0065b9;
+        font-family: DIN;
+    }
+    .title-product-consulting {
+        text-align: center;
+    }
+    #omt-inquiry-box form input[type=text], .fixed-product-consulting .wrap-product-consulting .product-consulting .product-consulting-list form textarea{
+        font-size: 16px;
+        line-height: 30px;
+        width: 100%;
+        min-height: 52px;
+        padding: 10px;
+        resize: vertical;
+        color: #999;
+        border: none;
+        border-bottom: 1px solid #dcdcdc;
+        border-radius: 4px;
+        outline: none;
+    }
+    .omt {
+        font-size: 16px;
+        line-height: 30px;
+        width: 100%;
+        min-height: 52px;
+        padding: 10px;
+        resize: vertical;
+        color: #999;
+        border: none;
+        border-bottom: 1px solid #dcdcdc;
+        border-radius: 4px;
+        outline: none;
+    }
+    .omt-des-box {
+        width: 100%!important;
+    }
+    #omt-inquiry-box form ul li {
+        margin-top: 20px;
+        padding: 0 30px;
+        list-style: none;
+        width: 43%;
+    }
+    .inquiry-blue:hover {
+        color: #fff;
+        background-color: #004a87;
+    }
+    #omt-inquiry-box form ul li:last-child {
+        width: 100%;
+        text-align: center;
+    }
+    .inquiry-btn {
+        font-size: 16px;
+        line-height: 50px;
+        height: 50px;
+        margin-bottom: 60px;
+        padding: 0 50px;
+        -webkit-transition: all .2s;
+        transition: all .2s;
+        color: #fff;
+/*         border-radius: 30px; */
+        cursor: pointer;
+        border: 0;
+      width:300px;
+    }
+    .inquiry-link {
+        display: inline-block;
+    }
+    .inquiry-link > img {
+        width: 24px;
+          display: inline;
+
+    }
+    .inquiry-blue {
+        background-color: #3866e2;
+        width:300px;
+/*         margin:30px auto auto; */
+    }
+    .inquiry-green {
+        background-color: #ea9502;
+    }
+    .inquiry-green:hover {
+        color: #fff;
+        background-color: #b77401;
+    }
+    .inquiry-gray {
+        background-color: #000;
+    }
+    .inquiry-gray:hover {
+        color: #fff;
+        background-color: #9da39d;
+    }
+    .mask-box {
+        display: none;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, .5);
+        z-index:9;
+    }
+    .mask-box .mask-inquiry {
+        background-color: white;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top:15%;
+        width: 100%;
+        height: 80vh;
+        padding: 20px 10px;
+        border-radius: 13px;
+        box-sizing: border-box;
+        z-index: 10;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    .mask-box .mask-inquiry .product-consulting-close {
+        color: #a19a9a;
+        font-weight: 100;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    .handle-box {
+        text-align: center;
+/*         margin-bottom:90px; */
+      display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+/*     background: #ffffffd6; */
+    }
+    #omt-inquiry-box .title-product-consulting b:after {
+        display: block;
+        width: 100%;
+        height: 4px;
+        margin-top: 20px;
+        content: '';
+        background: url('https://7cad390533514c32acc8-75d23ce06fcfaf780446d85d50c33f7b.ssl.cf6.rackcdn.com/line-5.png') no-repeat center;
+    }
+    /* 吸顶导航 */
+    .sticky-box {
+        position: fixed;
+        top: 40%;
+        right: 0;
+        background: #19191e;
+        box-shadow: 0px 4px 20px 0px #2F313019;
+        z-index:99;
+    }
+    .stick {
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        box-sizing: border-box;
+        color: #ffffff;
+        font-family: 'Avenir-Roman';
+        font-weight: regular;
+        font-size: 12px;
+        line-height: normal;
+        letter-spacing: 0px;
+        text-align: left;
+        display: flex;
+        align-items: center;
+      padding: 0 !important;
+    }
+    .stick:hover{
+        background-color: #1e78ab;
+        color:white;
+    }
+    .line {
+        border-bottom: 1px solid #cccccc;
+    }
+    .top-tel {
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+/*     .icon-box {
+        margin-top: 9px;
+    } */
+    .icon-hover {
+        display: none;
+    }
+    .svg-box:hover .icon-default{
+        display: none;
+    }
+    .svg-box:hover .icon-hover{
+        display: block;
+        margin-left: 11px;
+    }
+    .hover-box {
+        display: none;
+    }
+    .svg-box:hover .hover-box{
+        display: block;
+        position: absolute;
+        width: 90px;
+        height: 30px;
+        line-height: 30px;
+        box-shadow: 0px 4px 20px 0px #2f313019;
+        color: black;
+        right: 86px;
+        background: white;
+    }
+    input:-moz-placeholder,  
+    textarea:-moz-placeholder {  
+        color: #000!important;
+        font-weight:bold!important;
+    }  
+    input:-ms-input-placeholder,  
+    textarea:-ms-input-placeholder {  
+        color: #000!important;
+        font-weight:bold!important;
+    }  
+    input::-webkit-input-placeholder,  
+    textarea::-webkit-input-placeholder {  
+        color: #000!important;
+        font-weight:bold!important;
+    }
+  input::placeholder{
+    color: #000!important;
+    opacity: 1;
+  }
+  textarea::placeholder{
+    color: #000!important;
+    opacity: 1;
+  }
+    input:active, input:focus, select:active, select:focus, textarea:active, textarea:focus {
+        border:none!important;
+        border-color:#dcdcdc!important;
+        border-bottom: 1px solid #dcdcdc!important;
+    }
+      #omt-inquiry-box form input[type=text], .fixed-product-consulting .wrap-product-consulting .product-consulting .product-consulting-list form textarea{
+        font-size: 16px;
+        line-height: 30px;
+        width: 100%;
+        min-height: 52px;
+        padding: 10px;
+        resize: vertical;
+        color: #999;
+        border: none;
+        border-bottom: 1px solid #dcdcdc;
+        border-radius: 4px;
+        outline: none;
+    }
+  ul {
+    margin: 0 0 15px 0px;
+  }
+  .form-box {
+    padding: 0 5%!important;
+  }
+    @media only screen and (min-width: 900px){
+        #omt-inquiry-box form ul{
+            padding-left: 0px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        #omt-inquiry-box > .inquiry-box {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .mask-box .mask-inquiry {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+      .sticky-box {
+        display: none;
+      }
+    }
+    @media only screen and (max-width: 899px){
+        #omt-inquiry-box form ul{
+            padding-left: 0px;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        .omt-des-box {
+            width: 90%!important;
+        }
+        #omt-inquiry-box form ul li {
+            width: 90%;
+        }
+        .sticky-box {
+            left: 0;
+            width: 73px;
+          top:70%;
+        }
+        .svg-box:hover .hover-box{
+            left: 86px;
+        }
+      #alert-box {
+        display: none;
+      }
+    }
+</style>
+
+<div id="omt-inquiry-box" class="omt-inquiry">
+    <div class="sticky-box display-none" id="sticky_box">
+        <div class="stick line">         
+           <span class="top-inquiry text-" onclick="showDom()" style="padding: 14px;">{{ section.settings.topbar_text }}</span>
+        </div> 
+        <div class="stick svg-box" style="padding: 10px;">
+              <a class="top-tel" href="tel://{{ section.settings.topbar_tel }}">
+                  <div class="hover-box">
+                      {{ section.settings.topbar_tel }}
+                  </div>
+                  <svg class="icon-box icon-default" t="1665991977079"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2618" width="27" height="27"><path d="M817.066667 586.666667c-32-4.266667-64-12.8-96-23.466667-38.4-14.933333-81.066667-4.266667-110.933334 23.466667l-27.733333 27.733333c-70.4-44.8-130.133333-102.4-172.8-172.8l27.733333-27.733333c27.733333-29.866667 38.4-72.533333 23.466667-110.933334-10.666667-29.866667-19.2-61.866667-23.466667-96-6.4-51.2-51.2-89.6-104.533333-89.6h-108.8c-32 0-59.733333 12.8-78.933333 34.133334-19.2 21.333333-29.866667 51.2-27.733334 81.066666 12.8 117.333333 53.333333 230.4 117.333334 328.533334 57.6 91.733333 136.533333 170.666667 228.266666 228.266666 98.133333 64 211.2 104.533333 328.533334 117.333334h8.533333c25.6 0 51.2-10.666667 70.4-27.733334 21.333333-19.2 34.133333-49.066667 34.133333-76.8v-108.8c4.266667-53.333333-36.266667-98.133333-87.466666-106.666666z m25.6 106.666666v108.8c0 10.666667-4.266667 23.466667-12.8 29.866667-8.533333 8.533333-19.2 10.666667-29.866667 10.666667-106.666667-10.666667-211.2-49.066667-300.8-106.666667-83.2-53.333333-155.733333-125.866667-209.066667-209.066667-57.6-89.6-96-194.133333-106.666666-300.8 0-10.666667 2.133333-23.466667 10.666666-32 8.533333-8.533333 19.2-12.8 29.866667-12.8h108.8c21.333333 0 38.4 14.933333 40.533333 34.133334 4.266667 36.266667 14.933333 74.666667 27.733334 108.8 6.4 14.933333 2.133333 32-8.533334 42.666666l-46.933333 46.933334c-10.666667 10.666667-12.8 25.6-4.266667 38.4 55.466667 96 134.4 174.933333 230.4 230.4 12.8 6.4 27.733333 4.266667 38.4-4.266667l46.933334-46.933333c10.666667-10.666667 27.733333-14.933333 42.666666-8.533334 36.266667 12.8 72.533333 21.333333 108.8 27.733334 19.2 2.133333 34.133333 19.2 34.133334 42.666666 0-2.133333 0-2.133333 0 0z" p-id="2619" data-spm-anchor-id="a313x.7781069.0.i1" class="selected" fill="#FFFFFF"></path></svg>
+               
+                  <svg class="icon-box icon-hover" t="1665991977079"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2618" width="27" height="27"><path d="M817.066667 586.666667c-32-4.266667-64-12.8-96-23.466667-38.4-14.933333-81.066667-4.266667-110.933334 23.466667l-27.733333 27.733333c-70.4-44.8-130.133333-102.4-172.8-172.8l27.733333-27.733333c27.733333-29.866667 38.4-72.533333 23.466667-110.933334-10.666667-29.866667-19.2-61.866667-23.466667-96-6.4-51.2-51.2-89.6-104.533333-89.6h-108.8c-32 0-59.733333 12.8-78.933333 34.133334-19.2 21.333333-29.866667 51.2-27.733334 81.066666 12.8 117.333333 53.333333 230.4 117.333334 328.533334 57.6 91.733333 136.533333 170.666667 228.266666 228.266666 98.133333 64 211.2 104.533333 328.533334 117.333334h8.533333c25.6 0 51.2-10.666667 70.4-27.733334 21.333333-19.2 34.133333-49.066667 34.133333-76.8v-108.8c4.266667-53.333333-36.266667-98.133333-87.466666-106.666666z m25.6 106.666666v108.8c0 10.666667-4.266667 23.466667-12.8 29.866667-8.533333 8.533333-19.2 10.666667-29.866667 10.666667-106.666667-10.666667-211.2-49.066667-300.8-106.666667-83.2-53.333333-155.733333-125.866667-209.066667-209.066667-57.6-89.6-96-194.133333-106.666666-300.8 0-10.666667 2.133333-23.466667 10.666666-32 8.533333-8.533333 19.2-12.8 29.866667-12.8h108.8c21.333333 0 38.4 14.933333 40.533333 34.133334 4.266667 36.266667 14.933333 74.666667 27.733334 108.8 6.4 14.933333 2.133333 32-8.533334 42.666666l-46.933333 46.933334c-10.666667 10.666667-12.8 25.6-4.266667 38.4 55.466667 96 134.4 174.933333 230.4 230.4 12.8 6.4 27.733333 4.266667 38.4-4.266667l46.933334-46.933333c10.666667-10.666667 27.733333-14.933333 42.666666-8.533334 36.266667 12.8 72.533333 21.333333 108.8 27.733334 19.2 2.133333 34.133333 19.2 34.133334 42.666666 0-2.133333 0-2.133333 0 0z" p-id="2619" data-spm-anchor-id="a313x.7781069.0.i1" class="selected" fill="#ffffff"></path></svg>
+              </a>
+        </div>
+    </div>
+  
+   <div id="alert-box">
+       <div class="handle-box">
+           <a href="{{ section.settings.download_link }}"  target="_blank" class="inquiry-btn inquiry-gray inquiry-link">
+               <img src="https://cdn.shopify.com/s/files/1/0280/0012/4993/files/de-ico-1.png?v=1664177855" alt="">
+               <span>{{ section.settings.download_text }}</span>
+           </a>
+         <div class="call">
+         <div class="stick svg-box" style="padding: 10px;">
+            <a class="top-tel" href="tel://{{ section.settings.topbar_tel }}">
+                <div class="hover-box">
+                    {{ section.settings.topbar_tel }}
+                </div>
+                <svg class="icon-box icon-default" t="1665991977079"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2618" width="27" height="27"><path d="M817.066667 586.666667c-32-4.266667-64-12.8-96-23.466667-38.4-14.933333-81.066667-4.266667-110.933334 23.466667l-27.733333 27.733333c-70.4-44.8-130.133333-102.4-172.8-172.8l27.733333-27.733333c27.733333-29.866667 38.4-72.533333 23.466667-110.933334-10.666667-29.866667-19.2-61.866667-23.466667-96-6.4-51.2-51.2-89.6-104.533333-89.6h-108.8c-32 0-59.733333 12.8-78.933333 34.133334-19.2 21.333333-29.866667 51.2-27.733334 81.066666 12.8 117.333333 53.333333 230.4 117.333334 328.533334 57.6 91.733333 136.533333 170.666667 228.266666 228.266666 98.133333 64 211.2 104.533333 328.533334 117.333334h8.533333c25.6 0 51.2-10.666667 70.4-27.733334 21.333333-19.2 34.133333-49.066667 34.133333-76.8v-108.8c4.266667-53.333333-36.266667-98.133333-87.466666-106.666666z m25.6 106.666666v108.8c0 10.666667-4.266667 23.466667-12.8 29.866667-8.533333 8.533333-19.2 10.666667-29.866667 10.666667-106.666667-10.666667-211.2-49.066667-300.8-106.666667-83.2-53.333333-155.733333-125.866667-209.066667-209.066667-57.6-89.6-96-194.133333-106.666666-300.8 0-10.666667 2.133333-23.466667 10.666666-32 8.533333-8.533333 19.2-12.8 29.866667-12.8h108.8c21.333333 0 38.4 14.933333 40.533333 34.133334 4.266667 36.266667 14.933333 74.666667 27.733334 108.8 6.4 14.933333 2.133333 32-8.533334 42.666666l-46.933333 46.933334c-10.666667 10.666667-12.8 25.6-4.266667 38.4 55.466667 96 134.4 174.933333 230.4 230.4 12.8 6.4 27.733333 4.266667 38.4-4.266667l46.933334-46.933333c10.666667-10.666667 27.733333-14.933333 42.666666-8.533334 36.266667 12.8 72.533333 21.333333 108.8 27.733334 19.2 2.133333 34.133333 19.2 34.133334 42.666666 0-2.133333 0-2.133333 0 0z" p-id="2619" data-spm-anchor-id="a313x.7781069.0.i1" class="selected" fill="#FFFFFF"></path></svg>
+<!--                 <svg class="icon-box icon-default" t="1665991977079"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2618" width="27" height="27"><path d="M817.066667 586.666667c-32-4.266667-64-12.8-96-23.466667-38.4-14.933333-81.066667-4.266667-110.933334 23.466667l-27.733333 27.733333c-70.4-44.8-130.133333-102.4-172.8-172.8l27.733333-27.733333c27.733333-29.866667 38.4-72.533333 23.466667-110.933334-10.666667-29.866667-19.2-61.866667-23.466667-96-6.4-51.2-51.2-89.6-104.533333-89.6h-108.8c-32 0-59.733333 12.8-78.933333 34.133334-19.2 21.333333-29.866667 51.2-27.733334 81.066666 12.8 117.333333 53.333333 230.4 117.333334 328.533334 57.6 91.733333 136.533333 170.666667 228.266666 228.266666 98.133333 64 211.2 104.533333 328.533334 117.333334h8.533333c25.6 0 51.2-10.666667 70.4-27.733334 21.333333-19.2 34.133333-49.066667 34.133333-76.8v-108.8c4.266667-53.333333-36.266667-98.133333-87.466666-106.666666z m25.6 106.666666v108.8c0 10.666667-4.266667 23.466667-12.8 29.866667-8.533333 8.533333-19.2 10.666667-29.866667 10.666667-106.666667-10.666667-211.2-49.066667-300.8-106.666667-83.2-53.333333-155.733333-125.866667-209.066667-209.066667-57.6-89.6-96-194.133333-106.666666-300.8 0-10.666667 2.133333-23.466667 10.666666-32 8.533333-8.533333 19.2-12.8 29.866667-12.8h108.8c21.333333 0 38.4 14.933333 40.533333 34.133334 4.266667 36.266667 14.933333 74.666667 27.733334 108.8 6.4 14.933333 2.133333 32-8.533334 42.666666l-46.933333 46.933334c-10.666667 10.666667-12.8 25.6-4.266667 38.4 55.466667 96 134.4 174.933333 230.4 230.4 12.8 6.4 27.733333 4.266667 38.4-4.266667l46.933334-46.933333c10.666667-10.666667 27.733333-14.933333 42.666666-8.533334 36.266667 12.8 72.533333 21.333333 108.8 27.733334 19.2 2.133333 34.133333 19.2 34.133334 42.666666 0-2.133333 0-2.133333 0 0z" p-id="2619" data-spm-anchor-id="a313x.7781069.0.i1" class="selected" fill="#2F3130"></path></svg> -->
+                <svg class="icon-box icon-hover" t="1665991977079"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2618" width="27" height="27"><path d="M817.066667 586.666667c-32-4.266667-64-12.8-96-23.466667-38.4-14.933333-81.066667-4.266667-110.933334 23.466667l-27.733333 27.733333c-70.4-44.8-130.133333-102.4-172.8-172.8l27.733333-27.733333c27.733333-29.866667 38.4-72.533333 23.466667-110.933334-10.666667-29.866667-19.2-61.866667-23.466667-96-6.4-51.2-51.2-89.6-104.533333-89.6h-108.8c-32 0-59.733333 12.8-78.933333 34.133334-19.2 21.333333-29.866667 51.2-27.733334 81.066666 12.8 117.333333 53.333333 230.4 117.333334 328.533334 57.6 91.733333 136.533333 170.666667 228.266666 228.266666 98.133333 64 211.2 104.533333 328.533334 117.333334h8.533333c25.6 0 51.2-10.666667 70.4-27.733334 21.333333-19.2 34.133333-49.066667 34.133333-76.8v-108.8c4.266667-53.333333-36.266667-98.133333-87.466666-106.666666z m25.6 106.666666v108.8c0 10.666667-4.266667 23.466667-12.8 29.866667-8.533333 8.533333-19.2 10.666667-29.866667 10.666667-106.666667-10.666667-211.2-49.066667-300.8-106.666667-83.2-53.333333-155.733333-125.866667-209.066667-209.066667-57.6-89.6-96-194.133333-106.666666-300.8 0-10.666667 2.133333-23.466667 10.666666-32 8.533333-8.533333 19.2-12.8 29.866667-12.8h108.8c21.333333 0 38.4 14.933333 40.533333 34.133334 4.266667 36.266667 14.933333 74.666667 27.733334 108.8 6.4 14.933333 2.133333 32-8.533334 42.666666l-46.933333 46.933334c-10.666667 10.666667-12.8 25.6-4.266667 38.4 55.466667 96 134.4 174.933333 230.4 230.4 12.8 6.4 27.733333 4.266667 38.4-4.266667l46.933334-46.933333c10.666667-10.666667 27.733333-14.933333 42.666666-8.533334 36.266667 12.8 72.533333 21.333333 108.8 27.733334 19.2 2.133333 34.133333 19.2 34.133334 42.666666 0-2.133333 0-2.133333 0 0z" p-id="2619" data-spm-anchor-id="a313x.7781069.0.i1" class="selected" fill="#ffffff"></path></svg>
+            </a>
+        </div>
+         </div>
+           <span class="inquiry-btn inquiry-blue inquiry-link"  onclick="showDom()" style="padding: 0px;">
+               <img src="https://cdn.shopify.com/s/files/1/0280/0012/4993/files/de-ico-2.png?v=1664177855" alt="">
+               <span>{{ section.settings.inquiry_btn_text }}</span>
+           </span>
+       </div>
+       <div class="mask-box">
+           <div class="mask-inquiry">
+               <div class="product-consulting">
+                   <div class="product-consulting-close" onclick="closeDom()">
+                     <svg t="1666762205229" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2543" width="32" height="32"><path d="M550.848 502.496l308.64-308.896a31.968 31.968 0 1 0-45.248-45.248l-308.608 308.896-308.64-308.928a31.968 31.968 0 1 0-45.248 45.248l308.64 308.896-308.64 308.896a31.968 31.968 0 1 0 45.248 45.248l308.64-308.896 308.608 308.896a31.968 31.968 0 1 0 45.248-45.248l-308.64-308.864z" p-id="2544" data-spm-anchor-id="a313x.7781069.0.i0" class="selected" fill="#a19a9a"></path></svg>
+                   </div>
+                   <div class="title-product-consulting">
+                       <b>{{ section.settings.inquiry_title }}</b>
+                       <p>{{ section.settings.inquiry_des }}</p>
+                   </div>
+                   <div class="product-consulting-list">
+                    <form action='https://crm.zoho.com/crm/WebToLeadForm' 
+                        name=WebToLeads5481980000000600001 
+                        method='POST' 
+                        onSubmit='javascript:document.charset="UTF-8"; return checkMandatory5481980000000600001()' 
+                        accept-charset='UTF-8'
+                        id="frm-feedback-pc" 
+                        class="contact-message">
+                        <input type='text' style='display:none;' name='xnQsjsdp' value='f8e1dbd6fd41e5642f8c3ca82a6940efe64f27257e3e00307698734e1c4960a6'></input> 
+                        <input type='hidden' name='zc_gad' id='zc_gad' value=''></input> 
+                        <input type='text' style='display:none;' name='xmIwtLD' value='27e7e22958764a5870b165bde588e4811f42d733b2cbf14daee84fad8c830116'></input> 
+                        <input type='text'  style='display:none;' name='actionType' value='TGVhZHM='></input>
+                        <input type='text'  style='display:none;' name='Lead_Source' name="Lead Source" id="" value=''></input>
+                      <input type='text'  style='display:none;' name='City' name="City" id="City" value=''></input>
+                        <input type='text' style='display:none;' name='returnURL' value='https&#x3a;&#x2f;&#x2f;omtechlaser.com&#x2f;pages&#x2f;contact-us-for-fiber-cutting-machine' > </input>
+                        <ul class="form-box">
+                            <li>
+                                <input type="text" id="First_Name" name="First Name" placeholder="First Name *">
+                            </li>
+                            <li>
+                                <input type="text" id="Last_Name" name="Last_Name" placeholder="Last Name *">
+                            </li>
+                            <li>
+                                <input type="text"  id='Email' name='Email' maxlength='100' placeholder="Email *">
+                            </li>
+                            <li>
+                                <input type="text"  id='Phone' name='Phone' maxlength='30' placeholder="Phone Number *">
+                            </li>
+                            <li>
+                                <input type="text" id='Zip_Code' name='Zip Code' maxlength='30' placeholder="Postal Code *">
+                            </li>
+                            <li>
+                                <input type="text"  id='Company' name='Company' maxlength='30' placeholder="Company Name">
+                            </li>
+                            <li>
+                                <input type="text"  id='Website' name='Website' maxlength='30' placeholder="Website">
+                            </li>
+                            <li>
+                                <input type="text"  id='Designation' name='Designation' maxlength='30' placeholder="What is the best time to contact you?">
+                            </li>
+                            <li class="omt-des-box">
+                                <textarea class="omt"  id='Description' name='Description' placeholder="Message *" rows="2"></textarea>
+                            </li>
+                            <li>
+                                <div class="send">
+                                    <input type='submit' id='formsubmit' class='btn submit inquiry-btn inquiry-blue' value='Submit' title='Submit'>
+                                    <input type="reset" name='reset' value='Reset' title='Reset' style="display: none;">
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+<!-- OC 询盘 -->
+{% render 'oc-quote-popup', section: section %}
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- ss makes changes -->
+<script>
+    $(window).scroll(function() {
+    var verticalPosition = $(this).scrollTop();
+    var element = $('.omt-inquiry');
+    
+    if (verticalPosition > 5200) {
+      element.css('position', 'sticky');
+    } else {
+      element.css('position', 'fixed');
+      element.css('bottom', '0')
+    }
+  });
+</script>
+
+<script>
+  document.getElementById("City").value = location.href;
+  var is_running = true
+  var timer = setTimeout(() => {
+        showDom()
+  }, 1000*40);
+    
+ var is_running = true
+    // 页面滚动指定像素时 弹窗弹出
+ $(document).ready(function (e) {
+   //当滚动条的位置处于距顶部3500像素以下时，出现，否则消失
+   $(function () {
+      $(window).scroll(function () {
+        // console.log($(window).scrollTop(), '$(window).scrollTop()')
+         if ($(window).scrollTop() > 3500 && is_running) { //大于3500才出现并且是第一次打开弹窗
+             showDom()
+             clearTimeout(timer);
+          }
+        //当滚动条的位置处于距顶部1500像素以下时，sticky_box显示
+                if ($(window).scrollTop() > 1000) {
+                    $('#sticky_box').removeClass('display-none')
+                }
+         });
+     
+      });
+    
+   
+ })
+// 关闭弹窗dom
+function closeDom() {
+   // document.querySelector('.mask-box').style.display = 'none'
+  is_running = false
+  document.querySelector('#oc-cutting-quote-popup').style.display = 'none'
+}
+// 展示弹窗DOM
+function showDom() {
+   // document.querySelector('.mask-box').style.display = 'block'
+  is_running = false
+      document.querySelector('#oc-cutting-quote-popup').style.display = 'block'
+}
+
+    // 提交询盘
+    function checkMandatory5481980000000600001() {
+		var mndFileds = new Array('First Name','Last Name','Email','Phone','Zip Code','Description');
+		var fldLangVal = new Array('First\x20Name','Last\x20Name','Email','Phone','Postal\x20Code','Message');
+		for(i=0;i<mndFileds.length;i++) {
+		  var fieldObj=document.forms['WebToLeads5481980000000600001'][mndFileds[i]];
+		  if(fieldObj) {
+			if (((fieldObj.value).replace(/^\s+|\s+$/g, '')).length==0) {
+			 if(fieldObj.type =='file')
+				{ 
+				 alert('Please select a file to upload.'); 
+				 fieldObj.focus(); 
+				 return false;
+				} 
+			alert(fldLangVal[i] +' cannot be empty.'); 
+   	   	  	  fieldObj.focus();
+   	   	  	  return false;
+			}  else if(fieldObj.nodeName=='SELECT') {
+  	   	   	 if(fieldObj.options[fieldObj.selectedIndex].value=='-None-') {
+				alert(fldLangVal[i] +' cannot be none.'); 
+				fieldObj.focus();
+				return false;
+			   }
+			} else if(fieldObj.type =='checkbox'){
+ 	 	 	 if(fieldObj.checked == false){
+				alert('Please accept  '+fldLangVal[i]);
+				fieldObj.focus();
+				return false;
+			   } 
+			 } 
+			 try {
+			     if(fieldObj.name == 'Last Name') {
+				name = fieldObj.value;
+ 	 	 	    }
+			} catch (e) {}
+		    }
+		}
+		if(!validateEmail5481980000000600001()){return false;}
+		document.querySelector('.crmWebToEntityForm .formsubmit').setAttribute('disabled', true);
+	}
+    function validateEmail5481980000000600001()
+	{
+		var form = document.forms['WebToLeads5481980000000600001'];
+		var emailFld = form.querySelectorAll('[ftype=email]');
+		var i;
+		for (i = 0; i < emailFld.length; i++)
+		{
+			var emailVal = emailFld[i].value;
+			if((emailVal.replace(/^\s+|\s+$/g, '')).length!=0 )
+			{
+				var atpos=emailVal.indexOf('@');
+				var dotpos=emailVal.lastIndexOf('.');
+				if (atpos<1 || dotpos<atpos+2 || dotpos+2>=emailVal.length)
+				{
+					alert('Please enter a valid email address. ');
+					emailFld[i].focus();
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+    </script>
+
+{% schema %}
+{
+  "name": "OMT INQUIRY ZOHO",
+  "class": "omt-inquiry-zoho",
+  "settings": [
+     {
+          "type": "text",
+          "id": "topbar_text",
+          "label": "Top Bar Text",
+          "default": "GET A QUOTE"
+      },
+      {
+           "type": "text",
+           "id": "topbar_tel",
+           "label": "Phone",
+           "default": "888-886-9886"
+       },
+       {
+           "type": "text",
+           "id": "download_link",
+           "label": "Download Link"
+       },
+       {
+           "type": "text",
+           "id": "download_text",
+           "label": "Download"
+       },
+       {
+           "type": "text",
+           "id": "inquiry_btn_text",
+           "label": "Inquiry Button Text",
+           "default": "Send message"
+       },
+       {
+           "type": "text",
+           "id": "inquiry_title",
+           "label": "Inquiry Title",
+           "default": "Get a quote"
+       },
+       {
+           "type": "text",
+           "id": "inquiry_des",
+           "label": "Inquiry description",
+           "default": "Submit your information here, our relevant personnel will contact you as soon as possible"
+       },
+      {
+        "type": "text",
+        "id": "quote_popup_title",
+        "label": "Quote Popup Title"
+      },
+      {
+        "type": "text",
+        "id": "quote_description",
+        "label": "Quote Description"
+      }
+  ],
+  "blocks": [
+      {
+        "type": "quote_product",
+        "name": "Quote Product",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "product_image",
+            "label": "Product Image"
+          }, {
+            "type": "text",
+            "id": "product_name",
+            "label": "Product Name"
+          }
+        ]
+      }
+  ],
+  "presets": [
+    {
+      "name": "INQUIRY",
+      "blocks": [
+      ]
+    }
+  ]
+}
+{% endschema %}

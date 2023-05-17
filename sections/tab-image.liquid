@@ -1,0 +1,289 @@
+{%- if section.settings.divider -%}<div class="section--divider">{%- endif -%}
+
+<div class="page-width">
+  {%- if section.settings.title != blank -%}
+    <div class="section-header text-{{ section.settings.heading_position }}">
+      <h2 class="section-header__title {{ section.settings.heading_size }}">{{ section.settings.title | escape }}</h2>
+    </div>
+  {%- endif -%}
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="new-images-sec">
+      <div class="tab_section">
+         {%- for block in section.blocks -%}
+              <div class="tab_item {% if block.settings.tab=="Materials" %}active{% endif %}">{{ block.settings.tab }}</div>
+        {%- endfor -%}
+      </div>
+      <div class="new-pics">
+        {%- for block in section.blocks -%}
+          <div>
+          <div class="pic_lists">
+            <div class="pic__item">
+                <a href="{{ block.settings.link1 }}" class="pic__link" aria-label="{{ block.settings.image.alt }}">
+                  <img src="{{ block.settings.image1 | img_url:"master" }}" />
+                  <div class="pic__mask">
+                    <em>{{ block.settings.s_text1 }}</em>
+                    <span>{{ block.settings.s_title1 }}</span>
+                  </div>
+                </a>
+            </div>
+          <div class="pic__item">
+                <a href="{{ block.settings.link1 }}" class="pic__link" aria-label="{{ block.settings.image.alt }}">
+                  <img src="{{ block.settings.image2 | img_url:"master" }}" />
+          <div class="pic__mask">
+                    <em>{{ block.settings.s_text2 }}</em>
+                    <span>{{ block.settings.s_title2 }}</span>
+                  </div>
+                </a>
+            </div>
+        <div class="pic__item">
+                <a href="{{ block.settings.link1 }}" class="pic__link" aria-label="{{ block.settings.image.alt }}">
+                  <img src="{{ block.settings.image3 | img_url:"master" }}" />
+          <div class="pic__mask">
+                    <em>{{ block.settings.s_text3 }}</em>
+                    <span>{{ block.settings.s_title3 }}</span>
+                  </div>
+                </a>
+            </div>
+        <div class="pic__item">
+                <a href="{{ block.settings.link1 }}" class="pic__link" aria-label="{{ block.settings.image.alt }}">
+                  <img src="{{ block.settings.image4 | img_url:"master" }}" />
+                  <div class="pic__mask">
+                    <em>{{ block.settings.s_text4 }}</em>
+                    <span>{{ block.settings.s_title4 }}</span>
+                  </div>
+                </a>
+            </div>
+        <div class="pic__item">
+                <a href="{{ block.settings.link1 }}" class="pic__link" aria-label="{{ block.settings.image.alt }}">
+                  <img src="{{ block.settings.image5 | img_url:"master" }}" />
+          <div class="pic__mask">
+                    <em>{{ block.settings.s_text5 }}</em>
+                    <span>{{ block.settings.s_title5 }}</span>
+                  </div>
+                </a>
+            </div>
+        <div class="pic__item">
+                <a href="{{ block.settings.link1 }}" class="pic__link" aria-label="{{ block.settings.image.alt }}">
+                  <img src="{{ block.settings.image6 | img_url:"master" }}" />
+          <div class="pic__mask">
+                    <em>{{ block.settings.s_text6 }}</em>
+                    <span>{{ block.settings.s_title6 }}</span>
+                  </div>
+                </a>
+            </div>
+                </div>
+                  </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
+{%- if section.settings.divider -%}</div>{%- endif -%}
+
+{% schema %}
+{
+  "name": "Tab imagelist",
+  "class": "index-section tab_image-sec",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.logo-list.settings.title.label",
+      "default": "Our brands"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "t:common.heading_size.label",
+      "default": "h2",
+      "options": [
+        {
+          "value": "h3",
+          "label": "t:common.heading_size.options.small.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:common.heading_size.options.medium.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:common.heading_size.options.large.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:common.heading_size.options.extra_large.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "heading_position",
+      "label": "t:common.heading_position.label",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:common.heading_position.options.left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:common.heading_position.options.center.label"
+        },
+        {
+          "value": "right",
+          "label": "t:common.heading_position.options.right.label"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "divider",
+      "label": "t:sections.logo-list.settings.divider.label",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "item",
+      "settings": [
+        
+        {
+          "type": "text",
+          "id": "tab",
+          "label": "tab name"
+        },
+        {
+          "type": "image_picker",
+          "id": "image1",
+          "label": "image 1"
+        },
+        {
+          "type": "text",
+          "id": "s_text1",
+          "label": "text 1"
+        },
+        {
+          "type": "text",
+          "id": "s_title1",
+          "label": "title 1"
+        },
+        {
+          "type": "url",
+          "id": "link1",
+          "label": "link"
+        },
+       {
+          "type": "image_picker",
+          "id": "image2",
+          "label": "image 2"
+        },
+        {
+          "type": "text",
+          "id": "s_text2",
+          "label": "text 2"
+        },
+        {
+          "type": "text",
+          "id": "s_title2",
+          "label": "title 2"
+        },
+        {
+          "type": "url",
+          "id": "link2",
+          "label": "link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image3",
+          "label": "image 3"
+        },
+        {
+          "type": "text",
+          "id": "s_text3",
+          "label": "text 3"
+        },
+        {
+          "type": "text",
+          "id": "s_title3",
+          "label": "title 3"
+        },
+        {
+          "type": "url",
+          "id": "link3",
+          "label": "link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image4",
+          "label": "image 4"
+        },
+        {
+          "type": "text",
+          "id": "s_text4",
+          "label": "text 4"
+        },
+        {
+          "type": "text",
+          "id": "s_title4",
+          "label": "title 4"
+        },
+        {
+          "type": "url",
+          "id": "link4",
+          "label": "link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image5",
+          "label": "image 5"
+        },
+        {
+          "type": "text",
+          "id": "s_text5",
+          "label": "text 5"
+        },
+        {
+          "type": "text",
+          "id": "s_title5",
+          "label": "title 5"
+        },
+        {
+          "type": "url",
+          "id": "link5",
+          "label": "link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image6",
+          "label": "image 6"
+        },
+        {
+          "type": "text",
+          "id": "s_text6",
+          "label": "text 6"
+        },
+        {
+          "type": "text",
+          "id": "s_title6",
+          "label": "title 6"
+        },
+        {
+          "type": "url",
+          "id": "link6",
+          "label": "link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+        "name": "Tab imagelist"
+     
+    }
+  ]
+ 
+}
+{% endschema %}

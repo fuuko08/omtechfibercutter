@@ -1,0 +1,149 @@
+{%- liquid
+  assign dark_search_bg = true
+  assign lightness = settings.color_header_search | color_brightness
+
+  if lightness > 100
+    assign dark_search_bg = false
+  endif
+-%}
+
+<form action="{{ routes.search_url }}" method="get" role="search"
+  class="site-header__search-form" data-dark="{{ dark_search_bg }}">
+  <input type="hidden" name="type" value="{{ settings.search_type }}">
+  <input type="hidden" name="options[prefix]" value="last">
+  <input type="search" name="q" value="{{ search.terms | escape | replace: '*', '' }}" placeholder="{{ 'general.search.placeholder' | t }}" class="site-header__search-input" aria-label="{{ 'general.search.placeholder' | t }}">
+  <label for="search-icon" class="hidden-label">{{ 'general.search.submit' | t }}</label>
+  <label for="search-close" class="hidden-label">{{ 'general.accessibility.close' | t }}</label>
+  <button type="submit" id="search-icon" class="text-link site-header__search-btn site-header__search-btn--submit">
+    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search" viewBox="0 0 64 64"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px}</style></defs><path class="cls-1" d="M47.16 28.58A18.58 18.58 0 1 1 28.58 10a18.58 18.58 0 0 1 18.58 18.58zM54 54L41.94 42"/></svg>
+    <span class="icon__fallback-text">{{ 'general.search.submit' | t }}</span>
+  </button>
+
+  <button type="button" id="search-close" class="text-link site-header__search-btn site-header__search-btn--cancel">
+    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 64 64"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px}</style></defs><path class="cls-1" d="M19 17.61l27.12 27.13m0-27.13L19 44.74"/></svg>
+    <span class="icon__fallback-text">{{ 'general.accessibility.close' | t }}</span>
+  </button>
+</form>
+{%- paginate blog.articles by 9 -%}
+
+<div data-section-id="{{ section.id }}" data-section-type="blog">
+  <header class="section-header{% if section.settings.blog_show_tag_filter and blog.tags.size > 0 %} section-header--with-link{% endif %}">
+    <h1 class="section-header__title">
+      {{ blog.title }}
+
+      {%- if section.settings.blog_show_rss -%}
+        <a href="{{ shop.url }}{{ blog.url }}.atom" class="rss-link">
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-rss" viewBox="0 0 20 20"><path fill="#444" d="M5.903 16.586a2.489 2.489 0 1 1-4.977 0 2.489 2.489 0 0 1 4.977 0zM12.956 19.075H9.43c0-4.688-3.817-8.505-8.505-8.505V7.044c6.638 0 12.031 5.393 12.031 12.031z"/><path fill="#444" d="M15.445 19.075c0-8.028-6.493-14.52-14.52-14.52V.925c10.019 0 18.15 8.131 18.15 18.15h-3.63z"/></svg>
+          <span class="icon__fallback-text">RSS</span>
+        </a>
+      {%- endif -%}
+    </h1>
+  </header>
+
+  <div class="new-grid">
+    {%- for article in blog.articles -%}
+      {%- liquid
+        assign style = 'medium'
+        if forloop.first
+          assign style = 'large'
+        endif
+      -%}
+      {%- render 'article-grid-item',
+        blog: blog,
+        article: article,
+        style: style,
+        show_tags: section.settings.blog_show_tags,
+        show_date: section.settings.blog_show_date,
+        show_comments: section.settings.blog_show_comments,
+        show_author: section.settings.blog_show_author,
+        image_size: section.settings.blog_image_size -%}
+    {%- endfor -%}
+  </div>
+
+ {%- if paginate.pages > 1 -%}
+      {%- render 'pagination', paginate: paginate -%}
+    {%- endif -%}
+</div>
+
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "t:sections.blog-template.name",
+  "class": "blog-layout__main",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "blog_show_rss",
+      "label": "t:sections.blog-template.settings.blog_show_rss.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_tags",
+      "label": "t:sections.blog-template.settings.blog_show_tags.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_date",
+      "label": "t:sections.blog-template.settings.blog_show_date.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_comments",
+      "label": "t:sections.blog-template.settings.blog_show_comments.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_author",
+      "label": "t:sections.blog-template.settings.blog_show_author.label"
+    },
+    {
+      "type": "select",
+      "id": "blog_image_size",
+      "label": "t:sections.blog-template.settings.blog_image_size.label",
+      "default": "wide",
+      "options": [
+        {
+          "value": "natural",
+          "label": "t:sections.blog-template.settings.blog_image_size.options.natural.label"
+        },
+        {
+          "value": "adapt",
+          "label": "t:sections.main-blog.settings.image_height.options__1.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.blog-template.settings.blog_image_size.options.square.label"
+        },
+        {
+          "value": "landscape",
+          "label": "t:sections.blog-template.settings.blog_image_size.options.landscape.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.blog-template.settings.blog_image_size.options.portrait.label"
+        },
+        {
+          "value": "wide",
+          "label": "t:sections.blog-template.settings.blog_image_size.options.wide.label"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "blog_article_per_page",
+      "label": "Number of blog posts to display per page",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "default": 6
+    }
+  ],
+  "disabled_on": {
+    "groups": ["footer", "header", "custom.popups"]
+  }
+}
+{% endschema %}

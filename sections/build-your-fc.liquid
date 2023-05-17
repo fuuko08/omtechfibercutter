@@ -1,0 +1,514 @@
+<style>
+/*form styles*/
+#msform {
+	margin: 50px auto;
+	text-align: center;
+	position: relative;
+}
+#msform fieldset {
+	border: 0 none;
+	padding: 20px 30px;
+	margin: 0 10%;
+	/*stacking fieldsets above each other*/
+	position: relative;
+}
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+	display: none;
+}
+/*inputs*/
+#msform input, #msform textarea {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	color: #2C3E50;
+}
+/*buttons*/
+#msform .action-button {
+	width: 100px;
+	background: #3567DF;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px;
+	margin: 10px 5px;
+  text-decoration: none;
+  font-size: 14px;
+}
+#msform .action-button:hover, #msform .action-button:focus {
+	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+/*headings*/
+/* .fs-title {
+	font-size: 15px;
+	text-transform: uppercase;
+	color: #2C3E50;
+	margin-bottom: 10px;
+}
+.fs-subtitle {
+	font-weight: normal;
+	font-size: 13px;
+	color: #666;
+	margin-bottom: 20px;
+} */
+/*progressbar*/
+#progressbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  
+	margin: 30px auto;
+    width: 50%;
+	overflow: hidden;
+	/*CSS counters to number the steps*/
+	counter-reset: step;
+}
+#progressbar li {
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 2px solid #ACACA6;
+  border-radius: 50%;
+  transition: background 1s;
+  
+	list-style-type: none;
+	color: black;
+	text-transform: uppercase;
+	font-size: 12px;
+	float: left;
+	position: relative;
+  
+}
+#progressbar li:before {
+	content: counter(step);
+	counter-increment: step;
+	width: 20px;
+	line-height: 20px;
+	display: block;
+	font-size: 10px;
+	color: #333;
+	background: white;
+	border-radius: 50%;
+	margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+	content: '';
+	width: 100%;
+	height: 2px;
+/* 	background: white; */
+	position: absolute;
+	left: -50%;
+	top: 9px;
+  border: solid gray 1px;
+  border-radius: 50%;
+	z-index: -1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+	/*connector not needed before the first step*/
+	content: none; 
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+	background: #3866e2;
+	color: white;
+}
+  
+/* ss custom code */
+.tab_item {
+    color: #3567DF;
+    font-size: 16px;
+    border: 1px solid #3567DF;
+    padding: 13px 50px;
+      cursor: pointer;
+}
+.tab_item.active{
+  color: #ffffff;
+    background: #3567DF;
+}
+.image-wrap {
+  cursor: pointer;
+  border: 2px solid #ACACA6;
+  background-color: #eff0f9
+}
+.image-wrap.active {
+  border: solid 2px #3567DF;
+}
+.checkmark-icon {
+  height: 30px;
+    width: 30px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #3567DF;
+  color: white;
+  text-align: center;
+}
+
+.image-wrap-content {
+  padding: 20px;
+  text-align: center
+}
+
+.custom__item{
+  margin: 0 auto;
+  padding: 40px;
+}
+</style>
+
+
+<!-- Welcome section starts -->
+<section class="welcome">
+<div class="container">
+<!-- multistep form -->
+<form id="msform">
+  <h2>Build Your FC</h2>
+  <!-- progressbar -->
+  <ul id="progressbar">
+    <li class="active">Laser Power</li>
+    <li>Accessories</li>
+    <li>Setup Options</li>
+    <li>Warranty</li>
+    <li>Summary</li>
+  </ul>
+  
+<!--   fieldsets -->
+  <fieldset>
+    <div class="tab_section">
+      <div class="tab_item active">Raycus</div>
+      <div class="tab_item ">IPG</div>
+    </div>
+    
+    <div class="page-width">
+      <div class="custom-content">
+        <div class="custom__item small--one-whole one-quarter align--center">
+          <div class="custom__item-inner custom__item-inner--image">
+            <div class="image-wrap active" style="height: 0; padding-bottom: 118.66666666666667%;">
+              <span class="checkmark-icon">✓</span>
+              <img class="custom-build-image" src="//cdn.shopify.com/s/files/1/0676/0077/7536/files/FC-105C_b2cd9c78-dd6f-41a6-9b21-75015fd4f043.jpg?v=1680765947" alt="" width="300" height="356" loading="lazy" sizes="(min-width: 769px) 25vw, 100vw">
+            </div>
+          </div>
+        </div>
+        
+        <div class="custom__item small--one-whole one-quarter align--center">
+          <div class="custom__item-inner custom__item-inner--image">
+            <div class="image-wrap" style="height: 0; padding-bottom: 118.66666666666667%;">
+              <span class="checkmark-icon hide">✓</span>
+              <img class="custom-build-image" src="//cdn.shopify.com/s/files/1/0676/0077/7536/files/FC-105_c0984121-d05c-4707-a4d7-e342ded5bc8d.jpg?v=1680766071" alt="" width="300" height="356" loading="lazy" sizes="(min-width: 769px) 25vw, 100vw">
+            </div>
+          </div>
+        </div>
+        
+        <div class="custom__item small--one-whole one-quarter align--center">
+          <div class="custom__item-inner custom__item-inner--image">
+            <div class="image-wrap" style="height: 0; padding-bottom: 118.66666666666667%;">
+              <span class="checkmark-icon hide">✓</span>
+              <img class="custom-build-image" src="//cdn.shopify.com/s/files/1/0676/0077/7536/files/FC-44_f08294c8-becd-4f76-90fa-637f337ee78e.jpg?v=1680766383" alt="" width="300" height="356" loading="lazy" sizes="(min-width: 769px) 25vw, 100vw">
+            </div>
+          </div>
+        </div>
+        
+        <div class="custom__item small--one-whole one-quarter align--center">
+          <div class="custom__item-inner custom__item-inner--image">
+            <div class="image-wrap" style="height: 0; padding-bottom: 118.66666666666667%;">
+              <span class="checkmark-icon hide">✓</span>
+              <img class="custom-build-image" src="//cdn.shopify.com/s/files/1/0676/0077/7536/files/FC-510_5c667894-0cfb-483a-915a-914660f71355.jpg?v=1680766531" alt="" width="300" height="356" loading="lazy" sizes="(min-width: 769px) 25vw, 100vw">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <input type="button" name="next" class="next action-button" value="Next" />
+  </fieldset>
+  
+  <fieldset>
+    <div class="page-width">
+      <div class="custom-content">
+        <div class="custom__item small--one-whole one-quarter align--center">
+          <div class="custom__item-inner custom__item-inner--image">
+            <div class="image-wrap active" style="height: 0; padding-bottom: 118.66666666666667%;">
+              <span class="checkmark-icon">✓</span>
+              <div class="image-wrap-content">
+                <h4 class="image-wrap-content-title">Fiber Laser Chiller</h4>
+                <h5 class="image-wrap-content-subtitle">(Included)</h5>
+                <p class="image-wrap-content-text">Benefit of the water chiller</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="custom__item small--one-whole one-quarter align--center">
+          <div class="custom__item-inner custom__item-inner--image">
+            <div class="image-wrap" style="height: 0; padding-bottom: 118.66666666666667%;">
+              <span class="checkmark-icon hide">✓</span>
+              <div class="image-wrap-content">
+                <h4 class="image-wrap-content-title">Transformer</h4>
+                <h5 class="image-wrap-content-subtitle">(Included)</h5>
+                <p class="image-wrap-content-text">Benefit of the transformer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="custom__item small--one-whole one-quarter align--center">
+          <div class="custom__item-inner custom__item-inner--image">
+            <div class="image-wrap" style="height: 0; padding-bottom: 118.66666666666667%;">
+              <span class="checkmark-icon hide">✓</span>
+              <div class="image-wrap-content">
+                <h4 class="image-wrap-content-title">Air Compressor</h4>
+                <h5 class="image-wrap-content-subtitle">(Price varies upon configurations)</h5>
+                <p class="image-wrap-content-text">Benefit of the Air Compressor</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="custom__item small--one-whole one-quarter align--center">
+          <div class="custom__item-inner custom__item-inner--image">
+            <div class="image-wrap" style="height: 0; padding-bottom: 118.66666666666667%;">
+              <span class="checkmark-icon hide">✓</span>
+              <div class="image-wrap-content">
+                <h4 class="image-wrap-content-title">Dust Collector</h4>
+                <h5 class="image-wrap-content-subtitle">(Price varies upon configurations)</h5>
+                <p class="image-wrap-content-text">Benefit of the Dust Collector</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <input type="button" name="next" class="next action-button" value="Next" />
+  </fieldset>
+
+  <fieldset>
+    <div class="index-section">
+      <div class="page-width">
+        <div class="custom-content">
+          <div class="custom__item small--one-whole one-half align--center">
+            <div class="custom__item-inner custom__item-inner--liquid">
+              <span class="checkmark-icon hide">✓</span>
+              <div class="rte">
+                <h4>On-Site Installation & Training</h4>
+                <h5>(Included)</h5>
+                <p>OMTech provides complimentary on-site machine installation and operations training with every FC machine purchase. With OMTech's highly trained laser technician team, you'll be up and running in no time.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+<!--     <input type="button" name="previous" class="previous action-button" value="Previous" /> -->
+    <input type="button" name="next" class="next action-button" value="Next" />
+  </fieldset> 
+
+  <fieldset>
+    <div class="page-width">
+      <div class="custom-content">
+        <div class="custom__item small--one-whole one-quarter align--center">
+          <div class="custom__item-inner custom__item-inner--image">
+            <div class="image-wrap active" style="height: 0; padding-bottom: 118.66666666666667%;">
+              <span class="checkmark-icon">✓</span>
+              <div class="image-wrap-content">
+                <h4 class="image-wrap-content-title">Limited 2-Year Warranty</h4>
+                <h5 class="image-wrap-content-subtitle">(Included)</h5>
+                <p class="image-wrap-content-text">2 years Bumper to Bumper machine warranty for all machine mechanical and electrical components. (Except consumables parts)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="custom__item small--one-whole one-quarter align--center">
+          <div class="custom__item-inner custom__item-inner--image">
+            <div class="image-wrap" style="height: 0; padding-bottom: 118.66666666666667%;">
+              <span class="checkmark-icon hide">✓</span>
+              <div class="image-wrap-content">
+                <h4 class="image-wrap-content-title">Extended Warranty</h4>
+                <h5 class="image-wrap-content-subtitle">$</h5>
+                <p class="image-wrap-content-text">1 addition year of protection</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        
+    <input type="button" name="next" class="next action-button" value="Next" />
+  </fieldset>
+  
+  <fieldset>
+    <div class="index-section">
+      <div class="page-width">
+        <div class="custom-content">
+          <div class="custom__item small--one-whole one-half align--bottom-middle">
+            <div class="custom__item-inner custom__item-inner--image">
+              <h2>FC-105</h2>
+              <h3>Raycus Power 1500W</h3>
+              <div class="image-wrap" style="height: 0; padding-bottom: 59.711111111111116%;">
+                <img src="//cdn.shopify.com/s/files/1/0676/0077/7536/files/FC-105C-_1_33b4adec-e543-4a31-89bf-54957693a8f7.jpg?v=1683169467" alt="" srcset="//cdn.shopify.com/s/files/1/0676/0077/7536/files/FC-105C-_1_33b4adec-e543-4a31-89bf-54957693a8f7.jpg?v=1683169467&amp;width=360 360w, //cdn.shopify.com/s/files/1/0676/0077/7536/files/FC-105C-_1_33b4adec-e543-4a31-89bf-54957693a8f7.jpg?v=1683169467&amp;width=540 540w, //cdn.shopify.com/s/files/1/0676/0077/7536/files/FC-105C-_1_33b4adec-e543-4a31-89bf-54957693a8f7.jpg?v=1683169467&amp;width=720 720w, //cdn.shopify.com/s/files/1/0676/0077/7536/files/FC-105C-_1_33b4adec-e543-4a31-89bf-54957693a8f7.jpg?v=1683169467&amp;width=900 900w, //cdn.shopify.com/s/files/1/0676/0077/7536/files/FC-105C-_1_33b4adec-e543-4a31-89bf-54957693a8f7.jpg?v=1683169467&amp;width=1080 1080w, //cdn.shopify.com/s/files/1/0676/0077/7536/files/FC-105C-_1_33b4adec-e543-4a31-89bf-54957693a8f7.jpg?v=1683169467&amp;width=1600 1600w" width="4500" height="2687" loading="lazy" sizes="(min-width: 769px) 50vw, 100vw">
+              </div>
+            </div>
+          </div>
+          
+          <div class="custom__item small--one-whole one-half align--top-middle">
+            <div class="custom__item-inner custom__item-inner--liquid">
+              <div class="rte">
+                <h2>Accessores</h2>
+                <p>Fiber Laser Chiller: short description</p>
+                <p>Transformer: short description</p>
+              </div>
+              <div class="rte">
+                <h2>Setup Options</h2>
+                <p>On-Site Installation & Training</p>
+              </div>
+              <div class="rte">
+                <h2>Warranty</h2>
+                <p>Limited 2-Year Warranty: short description</p>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>   
+<!--     <input type="button" name="previous" class="previous action-button" value="Previous" /> -->
+    <a href="#" class="submit action-button" target="_top">Submit Now For A Custom Quote</a>
+  </fieldset>
+</form>
+</div>
+</section>
+<!-- Welcome section ends -->
+
+{% schema %}
+{
+"name": "multi-form", // Section name
+"settings": [
+{
+"id": "section-heading",
+"type": "text",
+"label": "Heading 1"
+},
+{
+"id": "section-large-heading",
+"type": "text",
+"label": "Heading 2"
+},
+{
+"id": "description",
+"type": "textarea",
+"label": "Description"
+},
+{
+"id": "view-btn-link",
+"type": "url",
+"label": "Button URL"
+},
+{
+"id": "view-btn",
+"type": "text",
+"label": "Button name"
+}
+],
+"presets": [
+{
+"name": "Welcome section Test",
+"category": "ADVANCED LAYOUT"
+}
+]
+}
+{% endschema %}
+
+
+
+{% javascript %}
+    
+<script>
+var current_fs, next_fs, previous_fs; //fieldsets
+var left, opacity, scale; //fieldset properties which we will animate
+var animating; //flag to prevent quick multi-click glitches
+
+
+$(".next").click(function(){
+	if(animating) return false;
+	animating = true;
+	
+	current_fs = $(this).parent();
+	next_fs = $(this).parent().next();
+	
+	//activate next step on progressbar using the index of next_fs
+	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+	
+	//show the next fieldset
+	next_fs.show(); 
+	//hide the current fieldset with style
+	current_fs.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale current_fs down to 80%
+			scale = 1 - (1 - now) * 0.2;
+			//2. bring next_fs from the right(50%)
+			left = (now * 50)+"%";
+			//3. increase opacity of next_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({
+        'transform': 'scale('+scale+')',
+        'position': 'absolute'
+      });
+			next_fs.css({'left': left, 'opacity': opacity});
+		}, 
+		duration: 800, 
+		complete: function(){
+			current_fs.hide();
+			animating = false;
+		}, 
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack'
+	});
+});
+
+$(".previous").click(function(){
+	if(animating) return false;
+	animating = true;
+	
+	current_fs = $(this).parent();
+	previous_fs = $(this).parent().prev();
+	
+	//de-activate current step on progressbar
+	$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+	
+	//show the previous fieldset
+	previous_fs.show(); 
+	//hide the current fieldset with style
+	current_fs.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale previous_fs from 80% to 100%
+			scale = 0.8 + (1 - now) * 0.2;
+			//2. take current_fs to the right(50%) - from 0%
+			left = ((1-now) * 50)+"%";
+			//3. increase opacity of previous_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({'left': left});
+			previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+		}, 
+		duration: 800, 
+		complete: function(){
+			current_fs.hide();
+			animating = false;
+		}, 
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack'
+	});
+});
+  </script>
+{% endjavascript %}
+

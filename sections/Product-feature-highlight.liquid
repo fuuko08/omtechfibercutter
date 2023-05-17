@@ -1,0 +1,527 @@
+<style>
+  .custom__item-inner {
+    position: relative;
+    display: inline-block;
+    text-align: left;
+    max-width: 85%;
+    background:#fff;
+  }
+  .rte:last-child {
+    margin-bottom: 0;
+    text-align: justify;
+    margin-top: 30px;
+}
+/*   .index-section {
+    margin: 0px 0;
+} */
+  .parallax {
+  /* Set the height of the section */
+  height: 100vh;
+  /* Create a background that covers the entire section */
+  background-size: cover;
+  /* Set the background to fixed */
+  background-attachment: fixed;
+  /* Create a background position that is centered and covers the entire section */
+  background-position: center;
+}
+
+/* Create a pseudo-element that covers the entire section */
+.parallax:before {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  /* Create a background that is partially transparent */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Create a container for the section's content */
+.parallax-content {
+  position: relative;
+  z-index: 2;
+}
+.custom-content-1 {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    width: 1180px;
+    margin: 0 auto;
+    flex-direction: row-reverse;
+    background: #fff;
+    transition: transform 0.3s ease-out; /* Add a transition effect to the transform property */
+}
+
+.custom-content-1:hover {
+  transform: translateY(-10px); /* Apply a transform on hover */
+
+}
+  
+  .custom__item.\31 small--one-whole.one-half.align--center {
+    transform: translate3d(0px, 47.8806px, 0px);
+}
+
+  .custom-content-1 {
+    transform: translate3d(0px, -63.1194px, 0px);
+}
+  .custom__item.one-whole.align--center {
+    height: 500px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+.custom-content {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    width: 1180px;
+    margin: 0px auto;
+    background: #fff;
+}
+.custom__item img {
+    display: block;
+    width: 100%;
+  height:auto;
+  background:#fff;
+  padding: 30px;
+}
+   @media only screen and (max-width: 600px) {
+     .custom__item {
+    flex: 0 0 auto;
+    padding-left: 0px;}
+   .custom__item.\31 small--one-whole.one-half.align--center {
+     transform: none;
+}
+     
+     .one-half {
+    width: 100%;
+}
+     .custom-content {
+    display: flex;
+    width: 95%;
+    margin: 0px 10px;
+    background: #fff;
+    flex-direction: column-reverse;
+}
+     .custom-content-1 {
+    display: flex;
+    width: 95%;
+    margin: 0px 10px;
+    background: #fff;
+    flex-direction: column-reverse;}
+     .custom__item img {
+    padding: 0px 16px 0px 0px;
+}
+  </style>
+{%- if section.settings.space_around -%}
+  <div class="index-section" id="section-highlight">
+{%- endif -%}
+ 
+{%- unless section.settings.full_width -%}
+  <div class="page-width">
+{%- endunless -%}
+  <div class="custom-content">
+  {%- for block in section.blocks -%}
+    {%- liquid
+      case block.settings.width
+        when '25%'
+          assign block_width = 'small--one-whole one-quarter'
+        when '33%'
+          assign block_width = 'small--one-whole one-third'
+        when '50%'
+          assign block_width = 'small--one-whole one-half'
+        when '66%'
+          assign block_width = 'small--one-whole two-thirds'
+        when '75%'
+          assign block_width = 'small--one-whole three-quarters'
+        when '100%'
+          assign block_width = 'one-whole'
+      endcase
+    -%}
+    <div class="custom__item 1{{ block_width }}{% if block.settings.alignment %} align--{{ block.settings.alignment }}{% endif %}" {{ block.shopify_attributes }}>
+      <div class="custom__item-inner custom__item-inner--{{ block.type }}{% if block.settings.image == blank and block.type == 'image' %} custom__item-inner--placeholder-image{% endif %}">
+        {%- case block.type -%}
+          {%- when 'liquid' -%}
+            {%- if block.settings.code != blank -%}
+              <div class="rte">
+                {{ block.settings.code }}
+              </div>
+            {%- else -%}
+              <div class="rte">
+                {{ 'home_page.onboarding.no_content' | t }}
+              </div>
+            {%- endif -%}
+          {%- when 'image' -%}
+            {%- if block.settings.link != blank -%}
+              <a href="{{ block.settings.link }}">
+            {%- endif -%}
+            {%- if block.settings.image != blank -%}
+              <div class="image-wrap" style="height: 0; padding-bottom: {{ 110 | divided_by: block.settings.image.aspect_ratio }}%;">
+                {%- liquid
+                  assign blockWidth = block.settings.width | remove: '%' | times: 1
+                  if forloop.index == 1 and blockWidth >= 50
+                    assign loading = section.settings.lazyload_images
+                  else
+                    assign loading = true
+                  endif
+                -%}
+                {%- render 'image-element',
+                  img: block.settings.image,
+                  loading: loading,
+                  sizeVariable: block.settings.width,
+                  widths: '360, 540, 720, 900, 1080, 1600',
+                -%}
+              </div>
+              {%- else -%}
+                <div class="image-wrap">
+                  {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+            {%- endif -%}
+            {%- if block.settings.link != blank -%}
+              </a>
+            {%- endif -%}
+        {%- endcase -%}
+      </div>
+    </div>
+  {%- endfor -%}
+  {%- if section.blocks.size == 0 -%}
+    <div class="page-width">
+      <div class="grid">
+        <div class="grid__item">
+          <div class="rte">
+            {{ 'home_page.onboarding.no_content' | t }}
+          </div>
+        </div>
+      </div>
+   </div>
+  {%- endif -%}
+  </div>
+    
+    {% assign image_url = section.settings.rounded_image | img_url: 'large' %}
+<div class="parallax custom__item one-whole align--center"style="background-image:url({{section.settings.img_bk | img_url:'1920x'}}) ">
+   
+<!-- <img src="{{ image_url }}" class="w3-round-small" alt=""> -->
+    </div>
+   
+        <div class="custom-content-1">
+  {%- for block in section.blocks -%}
+    {%- liquid
+      case block.settings.width
+        when '25%'
+          assign block_width = 'small--one-whole one-quarter'
+        when '33%'
+          assign block_width = 'small--one-whole one-third'
+        when '50%'
+          assign block_width = 'small--one-whole one-half'
+        when '66%'
+          assign block_width = 'small--one-whole two-thirds'
+        when '75%'
+          assign block_width = 'small--one-whole three-quarters'
+        when '100%'
+          assign block_width = 'one-whole'
+      endcase
+    -%}
+    <div class="custom__item {{ block_width }}{% if block.settings.alignment %} align--{{ block.settings.alignment }}{% endif %}" {{ block.shopify_attributes }}>
+      <div class="custom__item-inner custom__item-inner--{{ block.type }}{% if block.settings.image == blank and block.type == 'image' %} custom__item-inner--placeholder-image{% endif %}">
+        {%- case block.type -%}
+          {%- when 'liquid' -%}
+            {%- if block.settings.code1 != blank -%}
+              <div class="rte">
+                {{ block.settings.code1 }}
+              </div>
+            {%- else -%}
+              <div class="rte">
+                {{ 'home_page.onboarding.no_content' | t }}
+              </div>
+            {%- endif -%}
+          {%- when 'image' -%}
+            {%- if block.settings.link1 != blank -%}
+              <a href="{{ block.settings.link1 }}">
+            {%- endif -%}
+            {%- if block.settings.image1 != blank -%}
+              <div class="image1-wrap" style="height: 0; padding-bottom: {{ 100 | divided_by: block.settings.image1.aspect_ratio }}%;">
+                {%- liquid
+                  assign blockWidth = block.settings.width | remove: '%' | times: 1
+                  if forloop.index == 1 and blockWidth >= 50
+                    assign loading = section.settings.lazyload_images
+                  else
+                    assign loading = true
+                  endif
+                -%}
+                {%- render 'image-element',
+                  img: block.settings.image1,
+                  loading: loading,
+                  sizeVariable: block.settings.width,
+                  widths: '360, 540, 720, 900, 1080, 1600',
+                -%}
+              </div>
+              {%- else -%}
+                <div class="image1-wrap">
+                  {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+            {%- endif -%}
+            {%- if block.settings.link1 != blank -%}
+              </a>
+            {%- endif -%}
+        {%- endcase -%}
+      </div>
+    </div>
+  {%- endfor -%}
+  {%- if section.blocks.size == 0 -%}
+    <div class="page-width">
+      <div class="grid">
+        <div class="grid__item">
+          <div class="rte">
+            {{ 'home_page.onboarding.no_content' | t }}
+          </div>
+        </div>
+      </div>
+   </div>
+  {%- endif -%}
+  </div>
+{%- unless section.settings.full_width -%}
+  </div>
+{%- endunless -%}
+{%- if section.settings.space_around -%}
+  </div>
+{%- endif -%}
+<script> 
+ const items = document.querySelectorAll('.custom-item');
+
+function handleScroll() {
+  items.forEach(item => {
+    if (isElementInViewport(item)) {
+      item.classList.add('animate');
+    }
+  });
+}
+
+function isElementInViewport(element) {
+  const rect = element.getBoundingClientRect();
+  const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+  const windowWidth = (window.innerWidth || document.documentElement.clientWidth);
+  const vertInView = (rect.top <= windowHeight) && ((rect.top + rect.height) >= 0);
+  const horInView = (rect.left <= windowWidth) && ((rect.left + rect.width) >= 0);
+  return (vertInView && horInView);
+}
+
+window.addEventListener('scroll', handleScroll);
+
+
+</script>
+{% schema %}
+{
+  "name": "product-feature-highlight",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "t:sections.advanced-content.settings.full_width.label",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "space_around",
+      "label": "t:sections.advanced-content.settings.space_around.label",
+      "default": true
+    },
+    {
+            "type": "image_picker",
+            "id": "img_bk",
+            "label": "Background Image"
+        },
+    
+    {
+        "type": "image_picker",
+        "id": "rounded_image",
+        "label": "Select an image"
+      },
+    {
+      "type": "checkbox",
+      "id": "lazyload_images",
+      "label": "t:common.lazyload_images.label",
+      "info": "t:common.lazyload_images.info",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "liquid",
+      "name": "t:sections.advanced-content.blocks.html.name",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "code",
+          "label": "t:sections.advanced-content.blocks.html.settings.code.label",
+          "default": "<h2>Custom content</h2><p>Use this advanced section to build your own layouts or to add custom HTML, Liquid, or scripts.</p>",
+          "info": "t:sections.advanced-content.blocks.html.settings.code.info"
+        },
+        {
+          "type": "liquid",
+          "id": "code1",
+          "label": "t:sections.advanced-content.blocks.html.settings.code.label",
+          "default": "<h2>Custom content</h2><p>Use this advanced section to build your own layouts or to add custom HTML, Liquid, or scripts.</p>",
+          "info": "t:sections.advanced-content.blocks.html.settings.code.info"
+        },
+        {
+          "type": "select",
+          "id": "width",
+          "label": "t:sections.advanced-content.blocks.html.settings.width.label",
+          "default": "100%",
+          "options": [
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "75%",
+              "label": "75%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "t:sections.advanced-content.blocks.html.settings.alignment.label",
+          "default": "center",
+          "info": "t:sections.advanced-content.blocks.html.settings.alignment.info",
+          "options": [
+            {
+              "value": "top-middle",
+              "label": "t:sections.advanced-content.blocks.html.settings.alignment.options.top-middle.label"
+            },
+            {
+              "value": "center",
+              "label": "t:sections.advanced-content.blocks.html.settings.alignment.options.center.label"
+            },
+            {
+              "value": "bottom-middle",
+              "label": "t:sections.advanced-content.blocks.html.settings.alignment.options.bottom-middle.label"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "t:sections.advanced-content.blocks.image.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image1",
+          "label": "t:sections.advanced-content.blocks.image.settings.image.label"
+        },
+        {
+          "type": "url",
+          "id": "link1",
+          "label": "t:sections.advanced-content.blocks.image.settings.link.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.advanced-content.blocks.image.settings.image.label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.advanced-content.blocks.image.settings.link.label"
+        },
+        {
+          "type": "select",
+          "id": "width",
+          "label": "t:sections.advanced-content.blocks.image.settings.width.label",
+          "default": "100%",
+          "options": [
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "75%",
+              "label": "75%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "t:sections.advanced-content.blocks.image.settings.alignment.label",
+          "default": "center",
+          "info": "t:sections.advanced-content.blocks.image.settings.alignment.info",
+          "options": [
+            {
+              "value": "top-middle",
+              "label": "t:sections.advanced-content.blocks.image.settings.alignment.options.top-middle.label"
+            },
+            {
+              "value": "center",
+              "label": "t:sections.advanced-content.blocks.image.settings.alignment.options.center.label"
+            },
+            {
+              "value": "bottom-middle",
+              "label": "t:sections.advanced-content.blocks.image.settings.alignment.options.bottom-middle.label"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "background image & text box",
+      "blocks": [
+        {
+          "type": "image",
+          "settings": {
+            "width": "50%"
+          }
+        },
+        {
+          "type": "liquid",
+          "settings": {
+            "width": "50%"
+          }
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["custom.popups"]
+  }
+}
+{% endschema %}

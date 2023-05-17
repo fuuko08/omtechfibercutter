@@ -1,0 +1,55 @@
+<div class="custom_richtext">
+  <div class="page-width">
+    <div class="custom_section">
+      <h2>{{ section.settings.title }}</h2>
+      <div class="cus_tent">{{ section.settings.content }}</div>
+      <div class="cus_background">
+        <div>
+          <h2>{{ section.settings.img_title }}</h2>
+          <div>{{ section.settings.img_content }}</div>
+        </div>
+        <a href="" class="btn">read more<i class="icon_right"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "custom richtext",
+  "class": "index-section-custom",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "title"
+    },
+{
+      "type": "richtext",
+      "id": "content",
+      "label": "content"
+    },
+    {
+      "type": "text",
+      "id": "img_title",
+      "label": "image title"
+    },
+{
+      "type": "richtext",
+      "id": "img_content",
+      "label": "image content"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "read more link"
+    }
+  ],
+  "presets": [
+    {
+        "name": "custom richtext"
+     
+    }
+  ]
+ 
+}
+{% endschema %}

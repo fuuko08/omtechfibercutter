@@ -1,0 +1,77 @@
+<style>
+  body {
+    background: rgb(140, 214, 30);
+  }
+  
+  [data-tab-info] {
+    display: none;
+  }
+  
+  .active[data-tab-info] {
+    display: block;
+  }
+  
+  .tab-content {
+    font-size: 30px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: rgb(82, 75, 75);
+  }
+  
+  .tabs {
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    display: flex;
+    margin: 0;
+  }
+  
+  .tabs span {
+    background: rgb(28, 145, 38);
+    padding: 10px;
+    border: 1px solid rgb(255, 255, 255);
+  }
+  
+  .tabs span:hover {
+    background: rgb(29, 185, 112);
+    cursor: pointer;
+    color: black;
+  }
+</style>
+
+<div class="tabs">
+  <span data-tab-value="#tab-1">Tab-1</span>
+  <span data-tab-value="#tab-2">Tab-2</span>
+  <span data-tab-value="#tab-3">Tab-3</span>
+</div>
+
+<div class="tab-content">
+  {% assign tabs = "tab-1,tab-2,tab-3" | split: "," %}
+  {% for tab in tabs %}
+    <div class="tabs__tab {% if forloop.first %}active{% endif %}" id="{{ tab }}" data-tab-info>
+      {% case tab %}
+      {% when 'tab-1' %}
+        <p>Welcome to GeeksforGeek.</p>
+      {% when 'tab-2' %}
+        <p>Hello Everyone.</p>
+      {% when 'tab-3' %}
+        <p>Learn cool stuff.</p>
+      {% endcase %}
+    </div>
+  {% endfor %}
+</div>
+
+<script type="text/javascript">
+  const tabs = document.querySelectorAll('[data-tab-value]')
+  const tabInfos = document.querySelectorAll('[data-tab-info]')
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = document.querySelector(tab.dataset.tabValue);
+
+      tabInfos.forEach(tabInfo => {
+        tabInfo.classList.remove('active')
+      })
+      target.classList.add('active');
+    })
+  })
+</script>

@@ -1,0 +1,179 @@
+<style>
+  hr {
+    height: 1px;
+    border: 0;
+    border-top: 1px solid;
+    border-top-color: var(--shopify-editor-setting-color_borders);
+    border-top-color: var(--colorBorder);
+    margin: 3px 50px 0px 0px;
+}
+
+
+    /*PC*/
+/*     @media only screen and (min-width: 900px) { */
+      .pc-omt-specs-detail ul {
+        padding:0;
+        margin:0;
+        list-style:none;
+      }
+      .pc-omt-specs-detail p {
+        padding: 2px 0px;
+        margin: 0;
+      }
+      .pc-omt-specs-detail a{
+        text-decoration: none; /* 去除默认的下划线 */
+        color: #000;    /* 去除默认的颜色和点击后变化的颜色 */
+      }
+      .omt-specs-detail-content {
+        background-color: {{section.settings.bk_color}};
+        padding-bottom: 105px;
+      }
+      .omt-specs-detail-content .pc-omt-specs-detail {
+        width: 1200px;
+        margin: auto;
+      }
+      .pc-omt-specs-detail .pc-omt-specs {
+/*         font-family: DIN; */
+        font-size: 50px;
+        line-height: 1;
+        font-weight: bold;
+        padding: 60px 0 30px 0;
+        text-align:center;
+      }
+      .pc-specs-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .pc-specs-wrapper li {
+        width: 28%;
+        margin: 20px 0 0 0;
+      }
+      .pc-specs-wrapper li p {
+        margin-bottom: 5px;
+        padding-bottom: 5px;
+      }
+      .pc-specs-wrapper li .pc-specs-info {
+    
+/*     font-family: DIN; */
+    font-size: 16px;
+    line-height: 1;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+      }
+   .pc-specs-wrapper li .pc-specs-info-size {
+/*      font-family: Avenir-Roman; */
+      font-size: 16px;
+   }
+/*     } */
+    @media only screen and (min-width: 901px)and (max-width:1200px){
+    .omt-specs-detail-content .pc-omt-specs-detail {
+      width: 95%;
+      margin: auto;
+    }
+  }
+  /*mobile*/
+  @media only screen and (max-width: 899px) {
+    .omt-specs-detail-content .pc-omt-specs-detail {
+      width: 100%;
+      margin: auto;
+      padding:30px 20px;
+      background-color: #fff;
+    }
+    .pc-specs-wrapper {
+      display: block;
+    }
+    /*.pc-omt-specs {*/
+    /*  width: 70%;*/
+    /*}*/
+    .pc-specs-wrapper li {
+      width: 100%;
+    }
+    .pc-omt-specs-detail .pc-omt-specs {
+      padding:0 0 40px 0;
+      margin-bottom:60px;
+    }
+    .pc-specs-wrapper li {
+      margin-top:0;
+      margin-bottom:45px;
+    }
+    .omt-specs-detail-content {
+      margin-bottom:170px;
+      padding-bottom:0;
+       background-color: #fff;
+    }
+  }
+  </style>
+  <div class="specs_section" id="section-specs">
+  <div class="page-width hero--padded">
+  <div class="omt-specs-detail-content">
+    <!--  PC-->
+    <div class="pc-omt-specs-detail">
+      <div class="pc-omt-specs">
+        {{section.settings.main_title}}
+      </div>
+      <ul class="pc-specs-wrapper">
+        {%- for block in section.blocks -%}
+        <li>
+          <p class="pc-specs-info">{{ block.settings.list_title }}</p>
+          <hr>
+          <p class="pc-specs-info-size">{{ block.settings.detail }}</p>
+        </li>
+        {%- endfor -%}
+      </ul>
+  
+    </div>
+  <!--  mobile-->
+    <div class="mobile-omt-specs-detail"></div>
+  </div>
+  </div>
+  </div>
+  {% schema %}
+  {
+     "name": "SPECS LIST",
+     "class": "specs-list",
+     "settings": [
+        {
+             "type": "text",
+             "id": "main_title",
+             "label": "Title",
+             "default": "DIMENSIONS"
+         },
+         {
+          "type": "text",
+          "id": "bk_color",
+          "label": "Background Color"
+         }
+     ],
+     "blocks": [
+         {
+             "type" : "list",
+             "name" : "List",
+             "settings" : [
+                 {
+                     "type" : "text",
+                     "id"   : "list_title",
+                     "label": "List Title",
+                     "default":"CUTTING AREA"
+                 },
+                {
+                    "type" : "text",
+                    "id"   : "detail",
+                    "label": "Description",
+                    "default": "15.75 x 13.75"
+                }
+             ]
+          }
+     ],
+     "presets": [
+       {
+         "name": "SPECS LIST",
+         "blocks": [
+             {
+                 "type": "list"
+             }
+         ]
+       }
+     ]
+   }
+ {% endschema %}

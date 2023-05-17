@@ -1,0 +1,128 @@
+<style>
+  
+  .cus_tent {
+    text-align: left;
+    width: 70%;
+    margin: 0px 25px;
+}
+  .custom-content {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: auto;
+    margin-bottom: 15px;
+    margin-left: -22px;
+    justify-content: space-between;
+    .cus_tent {
+    text-align: justify;
+    width: 70%;
+    padding: 0px 20px;
+    border-left: 2px solid #6e62f2;;
+}
+    
+a.btn {
+  border: 1px solid #ccc;
+    background: #fff;
+    color: #000;
+    border-top: 1px solid;
+    width: 24%;
+}
+</style>
+<div class="page-width">
+<div class="custom_richtext">
+    <div class="custom_section">
+      <h2>{{ section.settings.title }}</h2>
+      <div class="custom-content">
+      <div class="cus_tent">{{ section.settings.content }}</div>
+       <a href="" class="btn">Apply Now<i class="icon_right"></i></a>
+       </div>
+    </div>  
+  </div>
+</div>
+<script>
+  (function(d, w) {
+
+    var cssId = "dcc-widget-css";
+    if (!d.getElementById(cssId))
+    {
+        var head = d.getElementsByTagName("head")[0];
+        var link = d.createElement("link");
+        link.id = cssId;
+        link.rel = "stylesheet";
+        link.type = "text/css";
+        link.href = "https://widget.directcapital.com/Content/widget.less";
+        link.media = "all";
+        head.appendChild(link);
+    }
+
+    var button = d.createElement("button");
+    button.className = "dcc-widget-btn dcc-widget-btn-standard-light";
+    button.onclick = function () {
+        var newWindow = w.open("https://omtechlaser1.directcapital.com/", "_blank");
+        newWindow.focus();
+    };
+
+    var script = null;
+    var partnershipIdRegex = new RegExp("[\\?&]encryptedpartnershipid=([^&#]*)");
+    var buttonTypeRegex = new RegExp("[\\?&]buttontype=([^&#]*)");
+    var scripts = d.getElementsByTagName("script");
+    for (var i = 0; i < scripts.length; ++i) {
+        var src = scripts[i].src.toLowerCase();
+        var partnershipIdResults = partnershipIdRegex.exec(src);
+        var buttonTypeResults = buttonTypeRegex.exec(src);
+        if (!scripts[i].processed && scripts[i].parentNode.tagName != "HEAD" && partnershipIdResults && buttonTypeResults) {
+            var partnershipId = decodeURIComponent(partnershipIdResults[1].replace(/\+/g, " "));
+            var buttonType = decodeURIComponent(buttonTypeResults[1].replace(/\+/g, " "));
+            if (partnershipId === "eaaaadjy9qcvvqn8n9yr2zoym8eqk72iawgy7qc6hke+iqhopkql/8porb3s9y7jl+1eqfnws8glzwzzw6btjri6wh8=" && buttonType === "standard-light") {
+                script = scripts[i];
+                script.processed = true;
+                break;
+            }
+        }
+    }
+
+    if (script)
+        script.parentNode.insertBefore(button, script);
+
+})(document, window);
+</script>
+{% schema %}
+{
+  "name": "custom richtext",
+  "class": "index-section-custom",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "title"
+    },
+{
+      "type": "richtext",
+      "id": "content",
+      "label": "content"
+    },
+    {
+      "type": "text",
+      "id": "img_title",
+      "label": "image title"
+    },
+{
+      "type": "richtext",
+      "id": "img_content",
+      "label": "image content"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "read more link"
+    }
+  ],
+  "presets": [
+    {
+        "name": "custom-financing-richtext"
+     
+    }
+  ]
+ 
+}
+{% endschema %}
